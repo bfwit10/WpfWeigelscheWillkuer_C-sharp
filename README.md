@@ -1,4 +1,8 @@
 # WpfWeigelscheWillkuer_C-sharp
+
+_____ THIS IS THE MASTER BRANCH OF OUR PROJECT! Please don´t change anything unless you know what you are doing!!!
+[please only do commit & push to master if version is at least compiling without any errors . THX :)]    _____
+
 Voller Liebe und voller Zärtlichkeit entsteht hier bald unser gemeinsammes Softwareprojekt!
 Direkt und life aus der Fraktalen-Dimension in das Auge des Layer-8 Betrachters...
 Ein paar Dinge über die Struktur diese Repositorys: die angelegten Klassen und weitere
