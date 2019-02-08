@@ -1,5 +1,6 @@
 # WpfWeigelscheWillkuer_C-sharp
 
+Kleine Änderung zur Demonstration!
 _____ THIS IS THE dbConnection BRANCH OF OUR PROJECT! _____
 
 Voller Liebe und voller Zärtlichkeit entsteht hier bald unser gemeinsammes Softwareprojekt!
