@@ -1,4 +1,8 @@
 # WpfWeigelscheWillkuer_C-sharp
+
+Kleine Änderung zur Demonstration!
+_____ THIS IS THE dbConnection BRANCH OF OUR PROJECT! _____
+
 Voller Liebe und voller Zärtlichkeit entsteht hier bald unser gemeinsammes Softwareprojekt!
 Direkt und life aus der Fraktalen-Dimension in das Auge des Layer-8 Betrachters...
 Ein paar Dinge über die Struktur diese Repositorys: die angelegten Klassen und weitere
