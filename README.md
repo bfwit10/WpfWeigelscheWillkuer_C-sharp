@@ -28,8 +28,5 @@ Für ganz Harte gibt es nach wie vor die Git_Konsole...
 
 bis später und viel Spaß, Chalex
 
-<<<<<<< HEAD
 -Das hier ist zeile 31 und das soll auch ein Konflikt werden
-=======
 Eine erneute Zeile für ein tolles projekt
->>>>>>> 131d7f451aa935404a6e823b2a46713a5d89e474
