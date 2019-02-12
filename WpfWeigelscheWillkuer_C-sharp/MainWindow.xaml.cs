@@ -122,19 +122,113 @@ namespace WpfWeigelscheWillkuer_C_sharp
 			//App.Current.MainWindow.Hide();
 		}
 
-		
+        //Ab hier beginnt die Berechnung des Fraktales
+        private void BtnStart_Click(object sender, RoutedEventArgs e)
+        {
+            double basisObjekte;
+            int layer = 0;
+            double gesamtlänge;
+            double länge;
+            double x = 300;
+            double tmp1 = 300;
+            double tmp2 = 100;
 
-            //Friedhof
-            private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e) { }
+
+            Double.TryParse(txtLänge.Text, out gesamtlänge);
+            Int32.TryParse(txtEingabe.Text, out layer);
+
+            basisObjekte = Math.Pow(2, layer);
+            länge = gesamtlänge / basisObjekte; //Berechnung der Länge für die Seiten des Quadrates
+
+            for (int i = 0; i < basisObjekte; i++)
+            {
+
+
+                for (int k = 0; k < basisObjekte; k++) //Schleife zum erstellen der Basis Objekte Horizontal
+                {
+                    Line Linie1 = new Line(); Line Linie2 = new Line(); Line Linie3 = new Line(); Line Linie4 = new Line();
+                    Line Linie5 = new Line(); Line Linie6 = new Line(); Line Linie7 = new Line(); Line Linie8 = new Line();
+
+
+                    //Farbcodes müssen noch integriert werden
+                    Linie1.Stroke = System.Windows.Media.Brushes.Red;
+                    Linie1.Fill = System.Windows.Media.Brushes.Red;
+                    Linie2.Stroke = System.Windows.Media.Brushes.Red;
+                    Linie2.Fill = System.Windows.Media.Brushes.Red;
+                    Linie3.Stroke = System.Windows.Media.Brushes.Red;
+                    Linie3.Fill = System.Windows.Media.Brushes.Red;
+                    Linie4.Stroke = System.Windows.Media.Brushes.Red;
+                    Linie4.Fill = System.Windows.Media.Brushes.Red;
+                    Linie5.Stroke = System.Windows.Media.Brushes.Red;
+                    Linie5.Fill = System.Windows.Media.Brushes.Red;
+                    Linie6.Stroke = System.Windows.Media.Brushes.Red;
+                    Linie6.Fill = System.Windows.Media.Brushes.Red;
+                    Linie7.Stroke = System.Windows.Media.Brushes.Red;
+                    Linie7.Fill = System.Windows.Media.Brushes.Red;
+                    Linie8.Stroke = System.Windows.Media.Brushes.Red;
+                    Linie8.Fill = System.Windows.Media.Brushes.Red;
+
+                    Linie1.X1 = tmp1;
+                    Linie1.Y1 = tmp2;
+
+                    Linie1.X2 = Linie1.X1 + länge;
+                    Linie1.Y2 = Linie1.Y1;//Linke Linie
+                    Linie2.X1 = Linie1.X2;
+                    Linie2.Y1 = Linie1.Y2;
+                    Linie2.X2 = Linie2.X1;
+
+                    Linie2.Y2 = Linie2.Y1 + länge;//Rechte Linie
+                    Linie3.X1 = Linie2.X2;
+                    Linie3.Y1 = Linie2.Y2;
+                    Linie3.X2 = Linie3.X1 - länge;
+
+                    Linie3.Y2 = Linie3.Y1; //Untere Linie
+                    Linie4.X1 = Linie3.X2;
+                    Linie4.Y1 = Linie3.Y2;
+                    Linie4.X2 = Linie4.X1;
+
+                    Linie4.Y2 = Linie4.Y1 - länge; //Linke Linie
+                    Linie5.X1 = tmp1;
+                    Linie5.Y1 = tmp2 + (länge / 2);
+                    Linie5.X2 = Linie5.X1 + länge;
+
+                    Linie5.Y2 = Linie5.Y1; //Horizontale Trennung
+                    Linie6.X1 = tmp1 + (länge / 2);
+                    Linie6.Y1 = Linie1.Y1;
+                    Linie6.X2 = Linie6.X1;
+                    Linie6.Y2 = tmp2 + länge; //Vertikale Trennung
+                    Linie7.X1 = Linie1.X1;
+                    Linie7.Y1 = Linie1.Y1;
+                    Linie7.X2 = Linie2.X2;
+                    Linie7.Y2 = Linie2.Y2; //Vertical von oben links nach unten rechts
+                    Linie8.X1 = Linie2.X1;
+                    Linie8.Y1 = Linie2.Y1;
+                    Linie8.X2 = Linie4.X1;
+                    Linie8.Y2 = Linie4.Y1; //Vertical oben rechts nach unten links
+
+                    MainGrid.Children.Add(Linie1); MainGrid.Children.Add(Linie2); MainGrid.Children.Add(Linie3); MainGrid.Children.Add(Linie4);
+                    MainGrid.Children.Add(Linie5); MainGrid.Children.Add(Linie6); MainGrid.Children.Add(Linie7); MainGrid.Children.Add(Linie8);
+
+                    tmp1 = tmp1 + länge;
+
+                }
+                tmp1 = x;
+                tmp2 = tmp2 + länge;
+            }
+        }
+
+
+
+
+        //Friedhof
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e) { }
             private void BtnLaden_Click(object sender, RoutedEventArgs e) { }
             private void BtnSpeichern_Click(object sender, RoutedEventArgs e) { }
             private void btnErstellen_Click(object sender, RoutedEventArgs e) { }
             private void BtnLöschen_Click(object sender, RoutedEventArgs e) { }
             private void cb_Databases_SelectionChanged(object sender, SelectionChangedEventArgs e) { }
             private void fill_cb_UseDatabase() { }
-		
 
-        
 
     }
 }
