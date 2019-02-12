@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MySql.Data.MySqlClient; //Sehr wichtig!
 using System.Text.RegularExpressions;
+using System.Windows.Media.Media3D;
 
 namespace WpfWeigelscheWillkuer_C_sharp
 {
@@ -26,9 +27,8 @@ namespace WpfWeigelscheWillkuer_C_sharp
             public MainWindow()
             {
                 InitializeComponent();
-                fill_cb_UseDatabase();
+                fill_cb_UseDatabase(); //Auskommentiert weil die Methode auf dem Friehof (s.u.) gelandet ist...
             }
-
             private void Button_Click(object sender, RoutedEventArgs e)//zum schliessen der gesamten Form
             {
                 System.Windows.Application.Current.Shutdown();
@@ -104,6 +104,19 @@ namespace WpfWeigelscheWillkuer_C_sharp
                     }
                 }
             }
+
+		private void BT_Fraktal3Dproto_Click(object sender, RoutedEventArgs e)
+		{
+			Fraktal3Dproto Fraktal3dPROTO = new Fraktal3Dproto();
+			Fraktal3dPROTO.ShowDialog();
+
+			//Action!
+
+			App.Current.MainWindow.Hide();
+		}
+
+		
+
             //Friedhof
             private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e) { }
             private void BtnLaden_Click(object sender, RoutedEventArgs e) { }
@@ -112,5 +125,9 @@ namespace WpfWeigelscheWillkuer_C_sharp
             private void BtnLöschen_Click(object sender, RoutedEventArgs e) { }
             private void cb_Databases_SelectionChanged(object sender, SelectionChangedEventArgs e) { }
             private void fill_cb_UseDatabase() { }
-        }
+		
+
+        
+
+    }
 }

@@ -18,9 +18,10 @@
         <TextBox x:Name="txtDatenbank" HorizontalAlignment="Left" Height="23" Margin="51,232,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <Label x:Name="lblDatenbank" Content="Datenbank" HorizontalAlignment="Left" Margin="56,193,0,0" VerticalAlignment="Top"/>
         <Button x:Name="btnLöschen" Content="Löschen" HorizontalAlignment="Left" Margin="51,290,0,0" VerticalAlignment="Top" Width="75" Click="BtnLöschen_Click"/>
-        <ComboBox x:Name="cb_Databases" HorizontalAlignment="Left" Margin="129,197,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="ComboBox_SelectionChanged"/>
+        <ComboBox x:Name="cb_Databases" HorizontalAlignment="Left" Margin="129,197,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="ComboBox_SelectionChanged"/> <!-- -->
         <Button x:Name="btnLaden" Content="Laden" HorizontalAlignment="Left" Margin="649,349,0,0" VerticalAlignment="Top" Width="75" Click="btnladen_Click"/>
         <Button x:Name="btnAbspeichern" Content="Speichern" HorizontalAlignment="Left" Margin="557,349,0,0" VerticalAlignment="Top" Width="75" Click="BtnAbspeichern_Click"/>
+        <Button x:Name="BT_Fraktal3Dproto" Content="Fraktale Dimension" HorizontalAlignment="Left" Margin="334,77,0,0" VerticalAlignment="Top" Width="113" Height="40" Click="BT_Fraktal3Dproto_Click"/>
 
     </Grid>
 </Window>
