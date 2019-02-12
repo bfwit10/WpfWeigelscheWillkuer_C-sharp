@@ -27,7 +27,8 @@ namespace WpfWeigelscheWillkuer_C_sharp
             public MainWindow()
             {
                 InitializeComponent();
-                fill_cb_UseDatabase(); //Auskommentiert weil die Methode auf dem Friehof (s.u.) gelandet ist...
+                fill_cb_UseDatabase();
+				
             }
 
 			private void btnExit_Click(object sender, RoutedEventArgs e) //zum schliessen der gesamten Form
@@ -134,7 +135,7 @@ namespace WpfWeigelscheWillkuer_C_sharp
 			};
 			Fraktal3dPROTO.ShowDialog();
 
-			//Action!
+			//hier die View mit dem Würfel!
 
 			//App.Current.MainWindow.Hide();
 		}
@@ -156,85 +157,108 @@ namespace WpfWeigelscheWillkuer_C_sharp
 
             basisObjekte = Math.Pow(2, layer);
             länge = gesamtlänge / basisObjekte; //Berechnung der Länge für die Seiten des Quadrates
+			
+			Line[] lineArray = new Line[Convert.ToInt32(basisObjekte)];
+			for (int k = 0; k < Convert.ToInt32(basisObjekte) - 1; k++)
+			
+			{
+				lineArray[k] = new Line();
 
-            for (int i = 0; i < basisObjekte; i++)
-            {
+				for (int i = 0; i < basisObjekte; i++)
+				{
+					for (int j = 0; j < basisObjekte; j++) //Schleife zum erstellen der Basis Objekte Horizontal
+					{
+						{
+						/* TODO: Farbcodes müssen noch integriert werden 
+						 * 
+						 * hier wird der Code im ersten Schritt etwas knapper und 
+						 * portabler die Schleife(n) dazu waren ja schon da... ;-)
+						 * Die Zahlen der Linien waren zuvor bei eins beginnend!
+						 * #NO BRAINFUCK!
+						 * 
+						 * @author: AGAB
+						 */
+						 }
+						
+							{
+								_linie.Stroke = Brushes.Red;
+								_linie.Fill = Brushes.Red;
+							}
+					
+						{
+							lineArray[0].X1 = tmp1;	//Initiale linie				
+							lineArray[0].Y1 = tmp2;
+						}
+						tmp1 += länge; // Frage @AG: muss das in der Schleife sein !?
+					}
+					tmp1 = x;		// Frage @AG: muss das in der Schleife sein !?
+					tmp2 += länge;	// Frage @AG: muss das in der Schleife sein !?
+				}
+
+			}
+			
+			
+
+			foreach (Line _linie in lineArray)
+			{
+				MainGrid.Children.Add(_linie);
+			}		
+				// einmal Zeichnen sollte reichen ;-)
 
 
-                for (int k = 0; k < basisObjekte; k++) //Schleife zum erstellen der Basis Objekte Horizontal
-                {
-                    Line Linie1 = new Line(); Line Linie2 = new Line(); Line Linie3 = new Line(); Line Linie4 = new Line();
-                    Line Linie5 = new Line(); Line Linie6 = new Line(); Line Linie7 = new Line(); Line Linie8 = new Line();
 
+					{
+					lineArray[0].X2 = lineArray[0].X1 + länge;
+					lineArray[0].Y2 = lineArray[0].Y1;          //Linke Linie
+					lineArray[1].X1 = lineArray[0].X2;
+					lineArray[1].Y1 = lineArray[0].Y2;
+					lineArray[1].X2 = lineArray[1].X1;
+					}
 
-                    //Farbcodes müssen noch integriert werden
-                    Linie1.Stroke = System.Windows.Media.Brushes.Red;
-                    Linie1.Fill = System.Windows.Media.Brushes.Red;
-                    Linie2.Stroke = System.Windows.Media.Brushes.Red;
-                    Linie2.Fill = System.Windows.Media.Brushes.Red;
-                    Linie3.Stroke = System.Windows.Media.Brushes.Red;
-                    Linie3.Fill = System.Windows.Media.Brushes.Red;
-                    Linie4.Stroke = System.Windows.Media.Brushes.Red;
-                    Linie4.Fill = System.Windows.Media.Brushes.Red;
-                    Linie5.Stroke = System.Windows.Media.Brushes.Red;
-                    Linie5.Fill = System.Windows.Media.Brushes.Red;
-                    Linie6.Stroke = System.Windows.Media.Brushes.Red;
-                    Linie6.Fill = System.Windows.Media.Brushes.Red;
-                    Linie7.Stroke = System.Windows.Media.Brushes.Red;
-                    Linie7.Fill = System.Windows.Media.Brushes.Red;
-                    Linie8.Stroke = System.Windows.Media.Brushes.Red;
-                    Linie8.Fill = System.Windows.Media.Brushes.Red;
+					{
+						lineArray[1].Y2 = lineArray[1].Y1 + länge;  //Rechte Linie
+						lineArray[2].X1 = lineArray[1].X2;
+						lineArray[2].Y1 = lineArray[1].Y2;
+						lineArray[2].X2 = lineArray[2].X1 - länge;
+					}
 
-                    Linie1.X1 = tmp1;
-                    Linie1.Y1 = tmp2;
+					{ 
+						lineArray[2].Y2 = lineArray[2].Y1;          //Untere Linie
+						lineArray[3].X1 = lineArray[2].X2;
+						lineArray[3].Y1 = lineArray[2].Y2;
+						lineArray[3].X2 = lineArray[3].X1;
+					}
+					
+					
+					{
+						lineArray[2].Y2 = lineArray[3].Y1 - länge; //Linke Linie
+						lineArray[3].X1 = tmp1;
+						lineArray[3].Y1 = tmp2 + (länge / 2);
+						lineArray[3].X2 = lineArray[4].X1 + länge;
+					}
 
-                    Linie1.X2 = Linie1.X1 + länge;
-                    Linie1.Y2 = Linie1.Y1;//Linke Linie
-                    Linie2.X1 = Linie1.X2;
-                    Linie2.Y1 = Linie1.Y2;
-                    Linie2.X2 = Linie2.X1;
+					{ 
+						lineArray[4].Y2 = lineArray[4].Y1;          //Horizontale Trennung
+						lineArray[5].X1 = tmp1 + (länge / 2);
+						lineArray[5].Y1 = lineArray[0].Y1;
+						lineArray[5].X2 = lineArray[5].X1;
+						lineArray[5].Y2 = tmp2 + länge;     //Vertikale Trennung
+						lineArray[6].X1 = lineArray[0].X1;
+						lineArray[6].Y1 = lineArray[0].Y1;
+						lineArray[6].X2 = lineArray[1].X2;
+						lineArray[6].Y2 = lineArray[1].Y2;          //Vertical von oben links nach unten rechts
+						lineArray[7].X1 = lineArray[1].X1;
+						lineArray[7].Y1 = lineArray[1].Y1;
+						lineArray[7].X2 = lineArray[3].X1;
+						lineArray[7].Y2 = lineArray[3].Y1;          //Vertical oben rechts nach unten links
+					}
 
-                    Linie2.Y2 = Linie2.Y1 + länge;//Rechte Linie
-                    Linie3.X1 = Linie2.X2;
-                    Linie3.Y1 = Linie2.Y2;
-                    Linie3.X2 = Linie3.X1 - länge;
-
-                    Linie3.Y2 = Linie3.Y1; //Untere Linie
-                    Linie4.X1 = Linie3.X2;
-                    Linie4.Y1 = Linie3.Y2;
-                    Linie4.X2 = Linie4.X1;
-
-                    Linie4.Y2 = Linie4.Y1 - länge; //Linke Linie
-                    Linie5.X1 = tmp1;
-                    Linie5.Y1 = tmp2 + (länge / 2);
-                    Linie5.X2 = Linie5.X1 + länge;
-
-                    Linie5.Y2 = Linie5.Y1; //Horizontale Trennung
-                    Linie6.X1 = tmp1 + (länge / 2);
-                    Linie6.Y1 = Linie1.Y1;
-                    Linie6.X2 = Linie6.X1;
-                    Linie6.Y2 = tmp2 + länge; //Vertikale Trennung
-                    Linie7.X1 = Linie1.X1;
-                    Linie7.Y1 = Linie1.Y1;
-                    Linie7.X2 = Linie2.X2;
-                    Linie7.Y2 = Linie2.Y2; //Vertical von oben links nach unten rechts
-                    Linie8.X1 = Linie2.X1;
-                    Linie8.Y1 = Linie2.Y1;
-                    Linie8.X2 = Linie4.X1;
-                    Linie8.Y2 = Linie4.Y1; //Vertical oben rechts nach unten links
-
-                    MainGrid.Children.Add(Linie1); MainGrid.Children.Add(Linie2); MainGrid.Children.Add(Linie3); MainGrid.Children.Add(Linie4);
-                    MainGrid.Children.Add(Linie5); MainGrid.Children.Add(Linie6); MainGrid.Children.Add(Linie7); MainGrid.Children.Add(Linie8);
-
-                    tmp1 = tmp1 + länge;
-
-                }
-                tmp1 = x;
-                tmp2 = tmp2 + länge;
-            }
         }
 
-
+		public static void InitializeValues()
+		{
+			//Nothing to initialize yet!
+		}
 
 
         //Friedhof (lieber Herr Gertz, Standardkonstruktoren an diesen Ort zu verbannen tztztzt... )
@@ -246,10 +270,14 @@ namespace WpfWeigelscheWillkuer_C_sharp
             private void cb_Databases_SelectionChanged(object sender, SelectionChangedEventArgs e) { }
             private void fill_cb_UseDatabase() { }
 		
-		// Kreissal (und hier schließen sich zwei Kgreise... oo ... Gute N8!) 
+		// Kreissal (und hier schließen sich zwei Kgreise... oo ... Gute N8!)
+
 		private void BtnclearView_Click(object sender, RoutedEventArgs e)
 		{
-			//TODO: Anzeigen leeren, Zeichenebene leeren, Objektreferenzen aufheben, Garbage collector... und Zeicheneben leeren... 
+			//TODO: Anzeigen leeren, Zeichenebene leeren, Objektreferenzen aufheben,
+			//Garbage collector... und Zeicheneben leeren...
+
+			MainWindow.InitializeValues();
 		}
 	}
 }
