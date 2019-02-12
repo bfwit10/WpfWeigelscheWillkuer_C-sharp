@@ -5,25 +5,26 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfWeigelscheWillkuer_C_sharp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="800" Width="1200">
     <Grid x:Name="MainGrid">
-        <Button Content="Beenden" HorizontalAlignment="Left" Margin="129,375,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
-        <TextBox x:Name="txtEbene" HorizontalAlignment="Left" Height="23" Margin="557,309,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Label x:Name="lblEbene" Content="Ebene" HorizontalAlignment="Left" Margin="682,314,0,0" VerticalAlignment="Top" Height="23"/>
-        <Label x:Name="lblPin" Content="Pin" HorizontalAlignment="Left" Margin="682,283,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="lblBenutzername" Content="Benutzername" HorizontalAlignment="Left" Margin="682,252,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtPin" HorizontalAlignment="Left" Height="23" Margin="557,281,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="txtBenutzername" HorizontalAlignment="Left" Height="23" Margin="557,253,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="btnExit" Content="Beenden" HorizontalAlignment="Left" Margin="547,712,0,0" VerticalAlignment="Top" Width="75" Click="btnExit_Click"/>
+        <TextBox x:Name="txtEbene" HorizontalAlignment="Left" Height="23" Margin="937,449,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="lblEbene" Content="Ebene" HorizontalAlignment="Left" Margin="1062,454,0,0" VerticalAlignment="Top" Height="23"/>
+        <Label x:Name="lblPin" Content="Pin" HorizontalAlignment="Left" Margin="1062,423,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblBenutzername" Content="Benutzername" HorizontalAlignment="Left" Margin="1062,392,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtPin" HorizontalAlignment="Left" Height="23" Margin="937,421,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="txtBenutzername" HorizontalAlignment="Left" Height="23" Margin="937,393,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <!-- -->
-        <Button x:Name="btnLaden" Content="Laden" HorizontalAlignment="Left" Margin="649,349,0,0" VerticalAlignment="Top" Width="75" Click="btnladen_Click"/>
-        <Button x:Name="btnAbspeichern" Content="Speichern" HorizontalAlignment="Left" Margin="557,349,0,0" VerticalAlignment="Top" Width="75" Click="BtnAbspeichern_Click"/>
-        <Button x:Name="BT_Fraktal3Dproto" Content="Fraktale Dimension" HorizontalAlignment="Left" Margin="564,46,0,0" VerticalAlignment="Top" Width="113" Height="40" Click="BT_Fraktal3Dproto_Click"/>
+        <Button x:Name="btnLaden" Content="Laden" HorizontalAlignment="Left" Margin="1029,489,0,0" VerticalAlignment="Top" Width="75" Click="btnladen_Click"/>
+        <Button x:Name="btnAbspeichern" Content="Speichern" HorizontalAlignment="Left" Margin="937,489,0,0" VerticalAlignment="Top" Width="75" Click="btnAbspeichern_Click"/>
+        <Button x:Name="btnFraktal3Dproto" Content="Fraktale Dimension" HorizontalAlignment="Left" Margin="944,186,0,0" VerticalAlignment="Top" Width="113" Height="40" Click="btnFraktal3Dproto_Click"/>
 
         <!--Items für die Berechnung des Fraktals -->
-        <Button x:Name="btnStart" Content="Ebenen anzeigen" HorizontalAlignment="Left" Margin="19,247,0,0" VerticalAlignment="Top" Width="100" Click="BtnStart_Click" Height="23"/>
+        <Button x:Name="btnStart" Content="Ebenen anzeigen" HorizontalAlignment="Left" Margin="19,247,0,0" VerticalAlignment="Top" Width="100" Click="btnStart_Click" Height="23"/>
         <TextBox x:Name="txtEingabe" HorizontalAlignment="Left" Height="23" Margin="19,224,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="40"/>
         <TextBox x:Name="txtLänge" HorizontalAlignment="Left" Height="23" Margin="19,165,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="69"/>
         <Label x:Name="Label" Content="Länge Seite des Quadrates" HorizontalAlignment="Left" Margin="19,193,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btnclearView" Content="clear" HorizontalAlignment="Left" Margin="19,309,0,0" VerticalAlignment="Top" Width="75" Click="BtnclearView_Click"/>
 
     </Grid>
 </Window>

@@ -29,9 +29,18 @@ namespace WpfWeigelscheWillkuer_C_sharp
                 InitializeComponent();
                 fill_cb_UseDatabase(); //Auskommentiert weil die Methode auf dem Friehof (s.u.) gelandet ist...
             }
-            private void Button_Click(object sender, RoutedEventArgs e)//zum schliessen der gesamten Form
+
+			private void btnExit_Click(object sender, RoutedEventArgs e) //zum schliessen der gesamten Form
+			{
+				System.Windows.Application.Current.Shutdown();
+			}
+
+            private void Button_Click(object sender, RoutedEventArgs e)
             {
-                System.Windows.Application.Current.Shutdown();
+                // Configure message box
+				string message = "Bitte diesen Button unter Eigenschaften benennen!";
+				// Show message box
+				MessageBoxResult result = MessageBox.Show(message);
             }
 
             private void btnladen_Click(object sender, RoutedEventArgs e)
@@ -39,7 +48,7 @@ namespace WpfWeigelscheWillkuer_C_sharp
                 //lade button
             }
 
-            private void BtnAbspeichern_Click(object sender, RoutedEventArgs e)
+            private void btnAbspeichern_Click(object sender, RoutedEventArgs e)
             {
                 int pin, ebene, id = 0;
 
@@ -104,8 +113,16 @@ namespace WpfWeigelscheWillkuer_C_sharp
                     }
                 }
             }
-
-		private void BT_Fraktal3Dproto_Click(object sender, RoutedEventArgs e)
+		/*
+		 *	Hier folgt die Methode die durch das Klicken des Buttons hervorgezaubert wird.
+		 *	An hier können für jeden weiteren Button oder auch andere Events die eine Änderung
+		 *	der Darstellung zur Folge haben oder das s.u. aufrufen eines neuen Fensters
+		 *	durchführen, eingegefügt werden (bzw. da VS unten weiter automatisch einfügt -
+		 *	hin verschben werden. Im weiteren Verlauf des Projekts dürfte diese 
+		 *	Funktioinalität in eine andere Klasse im selben Namespace verschoben werden. Nicht
+		 *	zuletzt um den nach wie vor angestrebten M)
+		 */
+		private void btnFraktal3Dproto_Click(object sender, RoutedEventArgs e)
 		{
 			Fraktal3Dproto Fraktal3dPROTO = new Fraktal3Dproto()
 			{
@@ -123,7 +140,7 @@ namespace WpfWeigelscheWillkuer_C_sharp
 		}
 
         //Ab hier beginnt die Berechnung des Fraktales
-        private void BtnStart_Click(object sender, RoutedEventArgs e)
+        private void btnStart_Click(object sender, RoutedEventArgs e)
         {
             double basisObjekte;
             int layer = 0;
@@ -220,7 +237,7 @@ namespace WpfWeigelscheWillkuer_C_sharp
 
 
 
-        //Friedhof
+        //Friedhof (lieber Herr Gertz, Standardkonstruktoren an diesen Ort zu verbannen tztztzt... )
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e) { }
             private void BtnLaden_Click(object sender, RoutedEventArgs e) { }
             private void BtnSpeichern_Click(object sender, RoutedEventArgs e) { }
@@ -228,7 +245,11 @@ namespace WpfWeigelscheWillkuer_C_sharp
             private void BtnLöschen_Click(object sender, RoutedEventArgs e) { }
             private void cb_Databases_SelectionChanged(object sender, SelectionChangedEventArgs e) { }
             private void fill_cb_UseDatabase() { }
-
-
-    }
+		
+		// Kreissal (und hier schließen sich zwei Kgreise... oo ... Gute N8!) 
+		private void BtnclearView_Click(object sender, RoutedEventArgs e)
+		{
+			//TODO: Anzeigen leeren, Zeichenebene leeren, Objektreferenzen aufheben, Garbage collector... und Zeicheneben leeren... 
+		}
+	}
 }
