@@ -163,7 +163,12 @@ namespace WpfWeigelscheWillkuer_C_sharp
 			
 			{
 				lineArray[k] = new Line();
+			}
+			
+			
 
+			foreach (Line _linie in lineArray)
+			{
 				for (int i = 0; i < basisObjekte; i++)
 				{
 					for (int j = 0; j < basisObjekte; j++) //Schleife zum erstellen der Basis Objekte Horizontal
@@ -194,13 +199,6 @@ namespace WpfWeigelscheWillkuer_C_sharp
 					tmp1 = x;		// Frage @AG: muss das in der Schleife sein !?
 					tmp2 += länge;	// Frage @AG: muss das in der Schleife sein !?
 				}
-
-			}
-			
-			
-
-			foreach (Line _linie in lineArray)
-			{
 				MainGrid.Children.Add(_linie);
 			}		
 				// einmal Zeichnen sollte reichen ;-)
