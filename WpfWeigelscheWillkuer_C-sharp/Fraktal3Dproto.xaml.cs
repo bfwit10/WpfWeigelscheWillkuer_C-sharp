@@ -22,6 +22,7 @@ namespace WpfWeigelscheWillkuer_C_sharp
 	{
 		public Fraktal3Dproto()
 		{
+			InitializeComponent();
 			// here you can drop your code ;-)
 		}
 		

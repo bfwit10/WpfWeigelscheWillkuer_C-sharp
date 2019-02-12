@@ -14,7 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MySql.Data.MySqlClient; //Sehr wichtig!
 using System.Text.RegularExpressions;
-using System.Windows.Media.Media3D;
+
 
 namespace WpfWeigelscheWillkuer_C_sharp
 {
@@ -107,12 +107,19 @@ namespace WpfWeigelscheWillkuer_C_sharp
 
 		private void BT_Fraktal3Dproto_Click(object sender, RoutedEventArgs e)
 		{
-			Fraktal3Dproto Fraktal3dPROTO = new Fraktal3Dproto();
+			Fraktal3Dproto Fraktal3dPROTO = new Fraktal3Dproto()
+			{
+				Title = "Fraktal3dPROTO",
+				Topmost = true,
+				ResizeMode = ResizeMode.NoResize,
+				ShowInTaskbar = false,
+				Owner = this
+			};
 			Fraktal3dPROTO.ShowDialog();
 
 			//Action!
 
-			App.Current.MainWindow.Hide();
+			//App.Current.MainWindow.Hide();
 		}
 
 		
