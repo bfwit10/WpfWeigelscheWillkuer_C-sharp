@@ -140,38 +140,102 @@ namespace WpfWeigelscheWillkuer_C_sharp
 			//App.Current.MainWindow.Hide();
 		}
 
-        //Ab hier beginnt die Berechnung des Fraktales
-        private void btnStart_Click(object sender, RoutedEventArgs e)
-        {
-            double basisObjekte;
-            int layer = 0;
-            double gesamtlänge;
-            double länge;
-            double x = 300;
-            double tmp1 = 300;
-            double tmp2 = 100;
+		//Ab hier beginnt die Berechnung des Fraktales
+		private void btnStart_Click(object sender, RoutedEventArgs e)
+		{
+			double basisObjekte;
+			int layer = 0;
+			double gesamtlänge;
+			double länge;
+			double x = 300;
+			double tmp1 = 300;
+			double tmp2 = 100;
 
 
-            Double.TryParse(txtLänge.Text, out gesamtlänge);
-            Int32.TryParse(txtEingabe.Text, out layer);
+			Double.TryParse(txtLänge.Text, out gesamtlänge);
+			Int32.TryParse(txtEingabe.Text, out layer);
 
-            basisObjekte = Math.Pow(2, layer);
-            länge = gesamtlänge / basisObjekte; //Berechnung der Länge für die Seiten des Quadrates
-			
-			Line[] lineArray = new Line[Convert.ToInt32(layer +1 )];
-			for (int k = 0; k <= Convert.ToInt32(layer) ; k++)
-			
+			basisObjekte = Math.Pow(2, layer);
+			länge = gesamtlänge / basisObjekte; //Berechnung der Länge für die Seiten des Quadrates
+
+			Line[] lineArray = new Line[Convert.ToInt32(layer + 1)];
+			for (int k = 0; k <= Convert.ToInt32(layer); k++)
+
 			{
 				lineArray[k] = new Line();
 			}
-			
+
 
 
 			foreach (Line _linie in lineArray)
 			{
 				MainGrid.Children.Add(_linie);
-			}		
-			
+			}
+
+
+			lineArray[0].X2 = lineArray[0].X1 + länge;
+			lineArray[0].Y2 = lineArray[0].Y1;          //Linke Linie
+			if (layer >= 1)
+			{
+
+				lineArray[1].X1 = lineArray[0].X2;
+				lineArray[1].Y1 = lineArray[0].Y2;
+				lineArray[1].X2 = lineArray[1].X1;
+
+			}
+
+			if (layer >= 2)
+			{
+
+				lineArray[1].Y2 = lineArray[1].Y1 + länge;  //Rechte Linie
+				lineArray[2].X1 = lineArray[1].X2;
+				lineArray[2].Y1 = lineArray[1].Y2;
+				lineArray[2].X2 = lineArray[2].X1 - länge;
+			}
+			if (layer >= 3)
+			{
+				lineArray[2].Y2 = lineArray[2].Y1;          //Untere Linie
+				lineArray[3].X1 = lineArray[2].X2;
+				lineArray[3].Y1 = lineArray[2].Y2;
+				lineArray[3].X2 = lineArray[3].X1;
+			}
+
+			if (layer >= 4)
+			{
+				lineArray[2].Y2 = lineArray[3].Y1 - länge; //Linke Linie
+				lineArray[3].X1 = tmp1;
+				lineArray[3].Y1 = tmp2 + (länge / 2);
+				lineArray[3].X2 = lineArray[4].X1 + länge;
+			}
+			if (layer >= 5)
+				lineArray[4].Y2 = lineArray[4].Y1;          //Horizontale Trennung
+
+				if (layer >= 6)
+				{
+					lineArray[5].X1 = tmp1 + (länge / 2);
+					lineArray[5].Y1 = lineArray[0].Y1;
+					lineArray[5].X2 = lineArray[5].X1;
+					lineArray[5].Y2 = tmp2 + länge;     //Vertikale Trennung
+				}
+				if (layer >= 7)		
+					{ 	
+						lineArray[6].X1 = lineArray[0].X1;
+						lineArray[6].Y1 = lineArray[0].Y1;
+						lineArray[6].X2 = lineArray[1].X2;
+						lineArray[6].Y2 = lineArray[1].Y2;          //Vertical von oben links nach unten rechts
+					}
+						if (layer >= 8)		
+					{
+						lineArray[7].X1 = lineArray[1].X1;
+						lineArray[7].Y1 = lineArray[1].Y1;
+						lineArray[7].X2 = lineArray[3].X1;
+						lineArray[7].Y2 = lineArray[3].Y1;          //Vertical oben rechts nach unten links
+					}
+			foreach (Line _line in lineArray)
+			{
+				_line.Stroke = Brushes.Red;
+				_line.Fill = Brushes.Red;
+			}
 
 				for (int i = 0; i < basisObjekte; i++)
 				{
@@ -188,12 +252,6 @@ namespace WpfWeigelscheWillkuer_C_sharp
 						 * @author: AGAB
 						 */
 						 }
-						
-							{
-								lineArray[j].Stroke = Brushes.Red;
-								lineArray[j].Fill = Brushes.Red;
-							}
-					
 						{
 							lineArray[0].X1 = tmp1;	//Initiale linie				
 							lineArray[0].Y1 = tmp2;
@@ -206,52 +264,6 @@ namespace WpfWeigelscheWillkuer_C_sharp
 				
 
 
-
-					{
-					lineArray[0].X2 = lineArray[0].X1 + länge;
-					lineArray[0].Y2 = lineArray[0].Y1;          //Linke Linie
-					lineArray[1].X1 = lineArray[0].X2;
-					lineArray[1].Y1 = lineArray[0].Y2;
-					lineArray[1].X2 = lineArray[1].X1;
-					}
-
-					{
-						lineArray[1].Y2 = lineArray[1].Y1 + länge;  //Rechte Linie
-						lineArray[2].X1 = lineArray[1].X2;
-						lineArray[2].Y1 = lineArray[1].Y2;
-						lineArray[2].X2 = lineArray[2].X1 - länge;
-					}
-
-					{ 
-						lineArray[2].Y2 = lineArray[2].Y1;          //Untere Linie
-						lineArray[3].X1 = lineArray[2].X2;
-						lineArray[3].Y1 = lineArray[2].Y2;
-						lineArray[3].X2 = lineArray[3].X1;
-					}
-					
-					
-					{
-						lineArray[2].Y2 = lineArray[3].Y1 - länge; //Linke Linie
-						lineArray[3].X1 = tmp1;
-						lineArray[3].Y1 = tmp2 + (länge / 2);
-						lineArray[3].X2 = lineArray[4].X1 + länge;
-					}
-
-					{ 
-						lineArray[4].Y2 = lineArray[4].Y1;          //Horizontale Trennung
-						lineArray[5].X1 = tmp1 + (länge / 2);
-						lineArray[5].Y1 = lineArray[0].Y1;
-						lineArray[5].X2 = lineArray[5].X1;
-						lineArray[5].Y2 = tmp2 + länge;     //Vertikale Trennung
-						lineArray[6].X1 = lineArray[0].X1;
-						lineArray[6].Y1 = lineArray[0].Y1;
-						lineArray[6].X2 = lineArray[1].X2;
-						lineArray[6].Y2 = lineArray[1].Y2;          //Vertical von oben links nach unten rechts
-						lineArray[7].X1 = lineArray[1].X1;
-						lineArray[7].Y1 = lineArray[1].Y1;
-						lineArray[7].X2 = lineArray[3].X1;
-						lineArray[7].Y2 = lineArray[3].Y1;          //Vertical oben rechts nach unten links
-					}
 
         }
 
