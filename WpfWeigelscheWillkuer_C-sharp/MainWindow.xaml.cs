@@ -158,8 +158,8 @@ namespace WpfWeigelscheWillkuer_C_sharp
             basisObjekte = Math.Pow(2, layer);
             länge = gesamtlänge / basisObjekte; //Berechnung der Länge für die Seiten des Quadrates
 			
-			Line[] lineArray = new Line[Convert.ToInt32(layer)];
-			for (int k = 0; k < Convert.ToInt32(layer) ; k++)
+			Line[] lineArray = new Line[Convert.ToInt32(layer +1 )];
+			for (int k = 0; k <= Convert.ToInt32(layer) ; k++)
 			
 			{
 				lineArray[k] = new Line();
