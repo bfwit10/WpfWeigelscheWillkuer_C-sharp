@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MySql.Data.MySqlClient; //Sehr wichtig!
 using System.Text.RegularExpressions;
+using System.Reflection;
 
 
 namespace WpfWeigelscheWillkuer_C_sharp
@@ -139,6 +140,22 @@ namespace WpfWeigelscheWillkuer_C_sharp
 			//App.Current.MainWindow.Hide();
 		}
 
+        public Brush PickBrush() //Zufllige Farbe für die Linie
+        {
+            Brush result = Brushes.Transparent;
+
+            Random rnd = new Random();
+
+            Type brushesType = typeof(Brushes);
+
+            PropertyInfo[] properties = brushesType.GetProperties();
+
+            int random = rnd.Next(properties.Length);
+            result = (Brush)properties[random].GetValue(null, null);
+
+            return result;
+        }
+
         //Ab hier beginnt die Berechnung und Darstellung des Fraktales
         private void btnStart_Click(object sender, RoutedEventArgs e)
         {
@@ -155,10 +172,10 @@ namespace WpfWeigelscheWillkuer_C_sharp
 
             //Linie 1 und 4 werden insgesamt nur einmal gezeichnet
             Line Linie1 = new Line(); Line Linie4 = new Line();
-            Linie1.Stroke = System.Windows.Media.Brushes.Red;
-            Linie1.Fill = System.Windows.Media.Brushes.Red;
-            Linie4.Stroke = System.Windows.Media.Brushes.Red;
-            Linie4.Fill = System.Windows.Media.Brushes.Red;
+            Linie1.Stroke = PickBrush();
+            Linie1.Fill = PickBrush();
+            Linie4.Stroke = PickBrush();
+            Linie4.Fill = PickBrush();
             Linie1.X1 = tmp1;//Obere Linie
             Linie1.Y1 = tmp2;
             Linie1.X2 = Linie1.X1 + gesamtlänge;
@@ -181,23 +198,18 @@ namespace WpfWeigelscheWillkuer_C_sharp
                     Line Linie2 = new Line(); Line Linie3 = new Line();
                     Line Linie5 = new Line(); Line Linie6 = new Line(); Line Linie7 = new Line(); Line Linie8 = new Line();
 
-                    //Farbcodes müssen noch integriert werden
-                    Linie1.Stroke = System.Windows.Media.Brushes.Red;
-                    Linie1.Fill = System.Windows.Media.Brushes.Red;
-                    Linie2.Stroke = System.Windows.Media.Brushes.Red;
-                    Linie2.Fill = System.Windows.Media.Brushes.Red;
-                    Linie3.Stroke = System.Windows.Media.Brushes.Red;
-                    Linie3.Fill = System.Windows.Media.Brushes.Red;
-                    Linie4.Stroke = System.Windows.Media.Brushes.Red;
-                    Linie4.Fill = System.Windows.Media.Brushes.Red;
-                    Linie5.Stroke = System.Windows.Media.Brushes.Red;
-                    Linie5.Fill = System.Windows.Media.Brushes.Red;
-                    Linie6.Stroke = System.Windows.Media.Brushes.Red;
-                    Linie6.Fill = System.Windows.Media.Brushes.Red;
-                    Linie7.Stroke = System.Windows.Media.Brushes.Red;
-                    Linie7.Fill = System.Windows.Media.Brushes.Red;
-                    Linie8.Stroke = System.Windows.Media.Brushes.Red;
-                    Linie8.Fill = System.Windows.Media.Brushes.Red;
+                    Linie2.Stroke = PickBrush();
+                    Linie2.Fill = PickBrush();
+                    Linie3.Stroke = PickBrush();
+                    Linie3.Fill = PickBrush();
+                    Linie5.Stroke = PickBrush();
+                    Linie5.Fill = PickBrush();
+                    Linie6.Stroke = PickBrush();
+                    Linie6.Fill = PickBrush();
+                    Linie7.Stroke = PickBrush();
+                    Linie7.Fill = PickBrush();
+                    Linie8.Stroke = PickBrush();
+                    Linie8.Fill = PickBrush();
 
                     Linie2.X1 = tmp1 + länge;//Rechte Linie
                     Linie2.Y1 = tmp2;
