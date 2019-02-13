@@ -158,17 +158,21 @@ namespace WpfWeigelscheWillkuer_C_sharp
             basisObjekte = Math.Pow(2, layer);
             länge = gesamtlänge / basisObjekte; //Berechnung der Länge für die Seiten des Quadrates
 			
-			Line[] lineArray = new Line[Convert.ToInt32(basisObjekte)];
-			for (int k = 0; k < Convert.ToInt32(basisObjekte) - 1; k++)
+			Line[] lineArray = new Line[Convert.ToInt32(layer)];
+			for (int k = 0; k < Convert.ToInt32(layer) ; k++)
 			
 			{
 				lineArray[k] = new Line();
 			}
 			
-			
+
 
 			foreach (Line _linie in lineArray)
 			{
+				MainGrid.Children.Add(_linie);
+			}		
+			
+
 				for (int i = 0; i < basisObjekte; i++)
 				{
 					for (int j = 0; j < basisObjekte; j++) //Schleife zum erstellen der Basis Objekte Horizontal
@@ -186,22 +190,20 @@ namespace WpfWeigelscheWillkuer_C_sharp
 						 }
 						
 							{
-								_linie.Stroke = Brushes.Red;
-								_linie.Fill = Brushes.Red;
+								lineArray[j].Stroke = Brushes.Red;
+								lineArray[j].Fill = Brushes.Red;
 							}
 					
 						{
 							lineArray[0].X1 = tmp1;	//Initiale linie				
 							lineArray[0].Y1 = tmp2;
 						}
-						tmp1 += länge; // Frage @AG: muss das in der Schleife sein !?
+						tmp1 += länge; 
 					}
-					tmp1 = x;		// Frage @AG: muss das in der Schleife sein !?
-					tmp2 += länge;	// Frage @AG: muss das in der Schleife sein !?
+					tmp1 = x;		
+					tmp2 += länge;	
 				}
-				MainGrid.Children.Add(_linie);
-			}		
-				// einmal Zeichnen sollte reichen ;-)
+				
 
 
 
