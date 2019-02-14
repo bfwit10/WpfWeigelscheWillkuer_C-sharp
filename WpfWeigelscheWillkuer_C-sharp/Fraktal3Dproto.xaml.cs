@@ -70,7 +70,7 @@ namespace WpfWeigelscheWillkuer_C_sharp
                 if (e.Delta > 0) // Mausrad nach oben
                 {
 
-                    ModelVisual3D vYPlus3D = result.VisualHit as ModelVisual3D;
+                    ModelVisual3D vYPlus3D = result.VisualHit as ModelVisual3D; // hier liegt noch ein Bug versteckt, der das Programm zum Absturz führen kann
                     RotateTransform3D rotYPlus = (vYPlus3D.Transform as RotateTransform3D);
                     (rotYPlus.Rotation as AxisAngleRotation3D).Angle += 10; // würfel nach rechts drehen
                 }
@@ -78,7 +78,7 @@ namespace WpfWeigelscheWillkuer_C_sharp
                 else if (e.Delta < 0) // Mausrad nach unten
                 {
 
-                    ModelVisual3D vYMinus3D = result.VisualHit as ModelVisual3D;
+                    ModelVisual3D vYMinus3D = result.VisualHit as ModelVisual3D; // hier liegt noch ein Bug versteckt, der das Programm zum Absturz führen kann
                     RotateTransform3D rotYMinus = (vYMinus3D.Transform as RotateTransform3D);
                     (rotYMinus.Rotation as AxisAngleRotation3D).Angle -= 10; //würfel nach links drehen
                 }
