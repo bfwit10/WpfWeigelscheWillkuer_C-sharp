@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using MySql.Data.MySqlClient; //Sehr wichtig!
 using System.Text.RegularExpressions;
 using System.Reflection;
+using System.Media;
 
 
 namespace WpfWeigelscheWillkuer_C_sharp
@@ -167,6 +168,8 @@ namespace WpfWeigelscheWillkuer_C_sharp
             double tmp1 = 300; //X-Wert für den Beginn
             double tmp2 = 100; //Y-Wert für den Beginn
             string Zzahl;
+
+            Random zufall = new Random();
 
             Zzahl = Convert.ToString(zufall.Next(1, 4));
 
