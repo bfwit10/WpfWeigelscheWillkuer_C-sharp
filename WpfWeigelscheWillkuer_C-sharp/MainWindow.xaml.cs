@@ -16,6 +16,7 @@ using MySql.Data.MySqlClient; //Sehr wichtig!
 using System.Text.RegularExpressions;
 using System.Reflection;
 using System.Media;
+using System.IO;
 
 
 namespace WpfWeigelscheWillkuer_C_sharp
@@ -168,26 +169,34 @@ namespace WpfWeigelscheWillkuer_C_sharp
             double tmp1 = 300; //X-Wert für den Beginn
             double tmp2 = 100; //Y-Wert für den Beginn
             string Zzahl;
+			string[] toVivaldi1 = {Environment.CurrentDirectory, @"vivaldi\vivaldi1.wav", @"vivaldi\vivaldi2.wav",@"vivaldi\vivaldi3.wav"};
+			
+			string path = System.IO.Path.Combine(toVivaldi1[0],toVivaldi1[1]);
 
-            Random zufall = new Random();
+			SoundPlayer simpleSound = new SoundPlayer(System.IO.Path.Combine(toVivaldi1[0],toVivaldi1[1]));
+            simpleSound.Play();
+
+            /*Random zufall = new Random();
 
             Zzahl = Convert.ToString(zufall.Next(1, 4));
 
             if (Zzahl == "1")
             {
-                SoundPlayer simpleSound = new SoundPlayer(@"F:\vivaldi1.wav");
-                simpleSound.Play();
+                SoundPlayer simpleSound = new SoundPlayer(System.IO.Path.Combine(toVivaldi1[0],toVivaldi1[1]));
+                
+				simpleSound.Play();
             }
             else if (Zzahl == "2")
             {
-                SoundPlayer simpleSound = new SoundPlayer(@"F:\vivaldi2.wav");
+                SoundPlayer simpleSound = new SoundPlayer(System.IO.Path.Combine(toVivaldi1[0],toVivaldi1[2]));
                 simpleSound.Play();
             }
             else
             {
-                SoundPlayer simpleSound = new SoundPlayer(@"F:\vivaldi3.wav");
+                SoundPlayer simpleSound = new SoundPlayer(System.IO.Path.Combine(toVivaldi1[0],toVivaldi1[3]));
                 simpleSound.Play();
             }
+			*/
 
             Double.TryParse(txtLänge.Text, out gesamtlänge);
             Int32.TryParse(txtEingabe.Text, out layer);
