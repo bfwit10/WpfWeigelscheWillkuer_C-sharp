@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using MySql.Data.MySqlClient; //Sehr wichtig!
 using System.Text.RegularExpressions;
 using System.Reflection;
+using System.Media;
 
 
 namespace WpfWeigelscheWillkuer_C_sharp
@@ -166,6 +167,27 @@ namespace WpfWeigelscheWillkuer_C_sharp
             double x = 300; //X-Wert für den Beginn
             double tmp1 = 300; //X-Wert für den Beginn
             double tmp2 = 100; //Y-Wert für den Beginn
+            string Zzahl;
+
+            Random zufall = new Random();
+
+            Zzahl = Convert.ToString(zufall.Next(1, 4));
+
+            if (Zzahl == "1")
+            {
+                SoundPlayer simpleSound = new SoundPlayer(@"F:\vivaldi1.wav");
+                simpleSound.Play();
+            }
+            else if (Zzahl == "2")
+            {
+                SoundPlayer simpleSound = new SoundPlayer(@"F:\vivaldi2.wav");
+                simpleSound.Play();
+            }
+            else
+            {
+                SoundPlayer simpleSound = new SoundPlayer(@"F:\vivaldi3.wav");
+                simpleSound.Play();
+            }
 
             Double.TryParse(txtLänge.Text, out gesamtlänge);
             Int32.TryParse(txtEingabe.Text, out layer);
