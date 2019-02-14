@@ -187,7 +187,7 @@ namespace WpfWeigelscheWillkuer_C_sharp
             MainGrid.Children.Add(Linie1);
             MainGrid.Children.Add(Linie4);
 
-            basisObjekte = Math.Pow(2, layer);
+            basisObjekte = Math.Pow(2, layer); //Berechnung der Basis Objekte in einer Reihe sowie Spalte
             länge = gesamtlänge / basisObjekte; //Berechnung der Länge für die Seiten des Basis Objektes
 
             for (int i = 0; i < basisObjekte; i++)//Schreibmaschinen Methode. Wenn die Horizontale fertig ist geht es einen schritt in die vertikale
