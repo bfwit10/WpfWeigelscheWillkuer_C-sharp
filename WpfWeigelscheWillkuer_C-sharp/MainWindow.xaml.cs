@@ -158,143 +158,182 @@ namespace WpfWeigelscheWillkuer_C_sharp
             return result;
         }
 
+		public void playRandomVivaldi(bool toggleOff)
+		{
+			SoundPlayer simpleSound = new SoundPlayer();
+			if (!toggleOff)
+			{
+				string Zzahl;
+				string[] toVivaldi1 = { Environment.CurrentDirectory, @"vivaldi\vivaldi1.wav", @"vivaldi\vivaldi2.wav", @"vivaldi\vivaldi3.wav" };
+
+				string vivaldi1 = System.IO.Path.Combine(toVivaldi1[0], toVivaldi1[1]);
+				string vivaldi2 = System.IO.Path.Combine(toVivaldi1[0], toVivaldi1[2]);
+				string vivaldi3 = System.IO.Path.Combine(toVivaldi1[0], toVivaldi1[3]);
+				Random zufall = new Random();
+
+				Zzahl = Convert.ToString(zufall.Next(1, 4));
+
+				if (Zzahl == "1" || Zzahl == "4")
+				{
+					simpleSound = new SoundPlayer(vivaldi1);
+					simpleSound.Play();
+				}
+				else if (Zzahl == "2")
+				{
+					simpleSound = new SoundPlayer(vivaldi2);
+					simpleSound.Play();
+				}
+				else if (Zzahl =="3")
+				{
+					simpleSound = new SoundPlayer(vivaldi3);
+					simpleSound.Play();
+				}
+			}
+			else simpleSound.Stop();
+			
+		}
+
+		public void stopVivaldi()
+		{
+			bool toggleOff = true;
+			playRandomVivaldi(toggleOff);
+		}
+
         //Ab hier beginnt die Berechnung und Darstellung des Fraktales
         private void btnStart_Click(object sender, RoutedEventArgs e)
         {
-            double basisObjekte;
-            int layer = 0;
-            double gesamtlänge;
-            double länge;
-            double x = 300; //X-Wert für den Beginn
-            double tmp1 = 300; //X-Wert für den Beginn
-            double tmp2 = 100; //Y-Wert für den Beginn
-            string Zzahl;
-			string[] toVivaldi1 = {Environment.CurrentDirectory, @"vivaldi\vivaldi1.wav", @"vivaldi\vivaldi2.wav",@"vivaldi\vivaldi3.wav"};
-			
-			string path = System.IO.Path.Combine(toVivaldi1[0],toVivaldi1[1]);
-
-			SoundPlayer simpleSound = new SoundPlayer(System.IO.Path.Combine(toVivaldi1[0],toVivaldi1[1]));
-            simpleSound.Play();
-
-            /*Random zufall = new Random();
-
-            Zzahl = Convert.ToString(zufall.Next(1, 4));
-
-            if (Zzahl == "1")
-            {
-                SoundPlayer simpleSound = new SoundPlayer(System.IO.Path.Combine(toVivaldi1[0],toVivaldi1[1]));
-                
-				simpleSound.Play();
-            }
-            else if (Zzahl == "2")
-            {
-                SoundPlayer simpleSound = new SoundPlayer(System.IO.Path.Combine(toVivaldi1[0],toVivaldi1[2]));
-                simpleSound.Play();
-            }
-            else
-            {
-                SoundPlayer simpleSound = new SoundPlayer(System.IO.Path.Combine(toVivaldi1[0],toVivaldi1[3]));
-                simpleSound.Play();
-            }
-			*/
-
-            Double.TryParse(txtLänge.Text, out gesamtlänge);
-            Int32.TryParse(txtEingabe.Text, out layer);
-
-            //Linie 1 und 4 werden insgesamt nur einmal gezeichnet
-            Line Linie1 = new Line(); Line Linie4 = new Line();
-            Linie1.Stroke = PickBrush();
-            Linie1.Fill = PickBrush();
-            Linie4.Stroke = PickBrush();
-            Linie4.Fill = PickBrush();
-            Linie1.X1 = tmp1;//Obere Linie
-            Linie1.Y1 = tmp2;
-            Linie1.X2 = Linie1.X1 + gesamtlänge;
-            Linie1.Y2 = Linie1.Y1;
-            Linie4.X1 = Linie1.X1;//Linke Linie
-            Linie4.Y1 = Linie1.Y1;
-            Linie4.X2 = Linie4.X1;
-            Linie4.Y2 = Linie4.Y1 + gesamtlänge;
-            MainGrid.Children.Add(Linie1);
-            MainGrid.Children.Add(Linie4);
-
-            basisObjekte = Math.Pow(2, layer); //Berechnung der Basis Objekte in einer Reihe sowie Spalte
-            länge = gesamtlänge / basisObjekte; //Berechnung der Länge für die Seiten des Basis Objektes
-
-            for (int i = 0; i < basisObjekte; i++)//Schreibmaschinen Methode. Wenn die Horizontale fertig ist geht es einen schritt in die vertikale
-            {
-
-                for (int k = 0; k < basisObjekte; k++) //Schleife zum erstellen der Basis Objekte Horizontal
-                {
-                    Line Linie2 = new Line(); Line Linie3 = new Line();
-                    Line Linie5 = new Line(); Line Linie6 = new Line(); Line Linie7 = new Line(); Line Linie8 = new Line();
-
-                    Linie2.Stroke = PickBrush();
-                    Linie2.Fill = PickBrush();
-                    Linie3.Stroke = PickBrush();
-                    Linie3.Fill = PickBrush();
-                    Linie5.Stroke = PickBrush();
-                    Linie5.Fill = PickBrush();
-                    Linie6.Stroke = PickBrush();
-                    Linie6.Fill = PickBrush();
-                    Linie7.Stroke = PickBrush();
-                    Linie7.Fill = PickBrush();
-                    Linie8.Stroke = PickBrush();
-                    Linie8.Fill = PickBrush();
-
-                    Linie2.X1 = tmp1 + länge;//Rechte Linie
-                    Linie2.Y1 = tmp2;
-                    Linie2.X2 = Linie2.X1;
-                    Linie2.Y2 = Linie2.Y1 + länge;
-
-                    Linie3.X1 = Linie2.X2;//Untere Linie
-                    Linie3.Y1 = Linie2.Y2;
-                    Linie3.X2 = Linie3.X1 - länge;
-                    Linie3.Y2 = Linie3.Y1;
-
-                    Linie5.X1 = tmp1;//Horizontale Trennung
-                    Linie5.Y1 = tmp2 + (länge / 2);
-                    Linie5.X2 = Linie5.X1 + länge;
-                    Linie5.Y2 = Linie5.Y1;
-
-                    Linie6.X1 = tmp1 + (länge / 2);//Vertikale Trennung
-                    Linie6.Y1 = Linie1.Y1;
-                    Linie6.X2 = Linie6.X1;
-                    Linie6.Y2 = tmp2 + länge;
-
-                    Linie7.X1 = Linie2.X2;//Diagonale von oben links nach unten rechts
-                    Linie7.Y1 = Linie2.Y2;
-                    Linie7.X2 = Linie3.X2;
-                    Linie7.Y2 = Linie3.Y2 - länge;
-
-                    Linie8.X1 = Linie3.X2;//Diagonale oben rechts nach unten links
-                    Linie8.Y1 = Linie3.Y2;
-                    Linie8.X2 = Linie2.X1;
-                    Linie8.Y2 = Linie2.Y1;
-
-                    MainGrid.Children.Add(Linie2);
-                    MainGrid.Children.Add(Linie3);
-                    MainGrid.Children.Add(Linie5);
-                    MainGrid.Children.Add(Linie6);
-                    MainGrid.Children.Add(Linie7);
-                    MainGrid.Children.Add(Linie8);
-
-                    tmp1 = tmp1 + länge;//Berechnung für das nächste Basis Objekt in der Horizontalen Bewegung (X-Achse)
-                }
-
-                tmp1 = x;//zurücksetzen auf den Anfangs X Wert wo gezeichnet wird
-                tmp2 = tmp2 + länge;//Berechnung für die nächste Zeile zum zeichnen (Y-Achse)
-            }
+            playRandomVivaldi(false);
+            drawLines(true);
         }
+
+		Line Linie1, Linie2, Linie3, Linie4, Linie5, Linie6, Linie7, Linie8;
+		
+		public void drawLines(bool draw)
+		{
+				double basisObjekte;
+				int layer = 0;
+				double gesamtlänge;
+				double länge;
+				double x = 300; //X-Wert für den Beginn
+				double tmp1 = 300; //X-Wert für den Beginn
+				double tmp2 = 100; //Y-Wert für den Beginn
+
+				Double.TryParse(txtLänge.Text, out gesamtlänge);
+				Int32.TryParse(txtEingabe.Text, out layer);
+			
+				//Linie 1 und 4 werden insgesamt nur einmal gezeichnet
+				Linie1 = new Line(); Linie4 = new Line();
+				Linie1.Stroke = PickBrush();
+				Linie1.Fill = PickBrush();
+				Linie4.Stroke = PickBrush();
+				Linie4.Fill = PickBrush();
+				Linie1.X1 = tmp1;//Obere Linie
+				Linie1.Y1 = tmp2;
+				Linie1.X2 = Linie1.X1 + gesamtlänge;
+				Linie1.Y2 = Linie1.Y1;
+				Linie4.X1 = Linie1.X1;//Linke Linie
+				Linie4.Y1 = Linie1.Y1;
+				Linie4.X2 = Linie4.X1;
+				Linie4.Y2 = Linie4.Y1 + gesamtlänge;
+				MainGrid.Children.Add(Linie1);
+				MainGrid.Children.Add(Linie4);
+
+				basisObjekte = Math.Pow(2, layer); //Berechnung der Basis Objekte in einer Reihe sowie Spalte
+				länge = gesamtlänge / basisObjekte; //Berechnung der Länge für die Seiten des Basis Objektes
+
+				for (int i = 0; i < basisObjekte; i++)//Schreibmaschinen Methode. Wenn die Horizontale fertig ist geht es einen schritt in die vertikale
+				{
+
+					for (int k = 0; k < basisObjekte; k++) //Schleife zum erstellen der Basis Objekte Horizontal
+					{
+						Linie2 = new Line();	Linie3 = new Line();
+						Linie5 = new Line();	Linie6 = new Line(); 
+						Linie7 = new Line();	Linie8 = new Line();
+
+						Linie2.Stroke = PickBrush();
+						Linie2.Fill = PickBrush();
+						Linie3.Stroke = PickBrush();
+						Linie3.Fill = PickBrush();
+						Linie5.Stroke = PickBrush();
+						Linie5.Fill = PickBrush();
+						Linie6.Stroke = PickBrush();
+						Linie6.Fill = PickBrush();
+						Linie7.Stroke = PickBrush();
+						Linie7.Fill = PickBrush();
+						Linie8.Stroke = PickBrush();
+						Linie8.Fill = PickBrush();
+
+						Linie2.X1 = tmp1 + länge;//Rechte Linie
+						Linie2.Y1 = tmp2;
+						Linie2.X2 = Linie2.X1;
+						Linie2.Y2 = Linie2.Y1 + länge;
+
+						Linie3.X1 = Linie2.X2;//Untere Linie
+						Linie3.Y1 = Linie2.Y2;
+						Linie3.X2 = Linie3.X1 - länge;
+						Linie3.Y2 = Linie3.Y1;
+
+						Linie5.X1 = tmp1;//Horizontale Trennung
+						Linie5.Y1 = tmp2 + (länge / 2);
+						Linie5.X2 = Linie5.X1 + länge;
+						Linie5.Y2 = Linie5.Y1;
+
+						Linie6.X1 = tmp1 + (länge / 2);//Vertikale Trennung
+						Linie6.Y1 = Linie1.Y1;
+						Linie6.X2 = Linie6.X1;
+						Linie6.Y2 = tmp2 + länge;
+
+						Linie7.X1 = Linie2.X2;//Diagonale von oben links nach unten rechts
+						Linie7.Y1 = Linie2.Y2;
+						Linie7.X2 = Linie3.X2;
+						Linie7.Y2 = Linie3.Y2 - länge;
+
+						Linie8.X1 = Linie3.X2;//Diagonale oben rechts nach unten links
+						Linie8.Y1 = Linie3.Y2;
+						Linie8.X2 = Linie2.X1;
+						Linie8.Y2 = Linie2.Y1;
+
+						MainGrid.Children.Add(Linie2);
+						MainGrid.Children.Add(Linie3);
+						MainGrid.Children.Add(Linie5);
+						MainGrid.Children.Add(Linie6);
+						MainGrid.Children.Add(Linie7);
+						MainGrid.Children.Add(Linie8);
+
+						tmp1 = tmp1 + länge;//Berechnung für das nächste Basis Objekt in der Horizontalen Bewegung (X-Achse)
+						
+					}
+
+					tmp1 = x;//zurücksetzen auf den Anfangs X Wert wo gezeichnet wird
+					tmp2 = tmp2 + länge;//Berechnung für die nächste Zeile zum zeichnen (Y-Achse)
+
+				}
+				
+		}
 
         // Kreissal (und hier schließen sich zwei Kgreise... oo ... Gute N8!) 
-        private void BtnclearView_Click(object sender, RoutedEventArgs e)
-        {
-            //TODO: Anzeigen leeren, Zeichenebene leeren, Objektreferenzen aufheben, Garbage collector... und Zeicheneben leeren... 
-        }
+       private void BtnclearView_Click(object sender, RoutedEventArgs e)
+       {
+			removeLines();
+			this.txtEingabe.Text = string.Empty;
+			this.txtLänge.Text = string.Empty;
+			stopVivaldi();
+       }
 
-
-
+		public void removeLines()
+		{
+			MainGrid.Children.Remove(Linie8);
+			MainGrid.Children.Remove(Linie7);
+			MainGrid.Children.Remove(Linie2);
+			MainGrid.Children.Remove(Linie6);
+			MainGrid.Children.Remove(Linie5);
+			MainGrid.Children.Remove(Linie3);
+			MainGrid.Children.Remove(Linie4);
+			MainGrid.Children.Remove(Linie1);
+			
+		}	
+			
+		
 
         //Friedhof (lieber Herr Gertz, Standardkonstruktoren an diesen Ort zu verbannen tztztzt... )
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e) { }
