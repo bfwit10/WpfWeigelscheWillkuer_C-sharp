@@ -49,6 +49,10 @@ namespace WpfWeigelscheWillkuer_C_sharp
             private void btnladen_Click(object sender, RoutedEventArgs e)
             {
                 //lade button
+				// Configure message box
+				string message = "Diese Funktion ist noch nicht implementiert!";
+				// Show message box
+				MessageBoxResult result = MessageBox.Show(message);
             }
 
             private void btnAbspeichern_Click(object sender, RoutedEventArgs e)
@@ -142,7 +146,7 @@ namespace WpfWeigelscheWillkuer_C_sharp
 			//App.Current.MainWindow.Hide();
 		}
 
-        public Brush PickBrush() //Zufllige Farbe für die Linie
+        public Brush PickBrush() //Zufällige Farbe für die Linie
         {
             Brush result = Brushes.Transparent;
 
@@ -157,7 +161,7 @@ namespace WpfWeigelscheWillkuer_C_sharp
 
             return result;
         }
-
+		//Methode die den Soundplayer zum Abspielen der vivaldi.wav auffordert
 		public void playRandomVivaldi(bool toggleOff)
 		{
 			SoundPlayer simpleSound = new SoundPlayer();
@@ -192,7 +196,8 @@ namespace WpfWeigelscheWillkuer_C_sharp
 			else simpleSound.Stop();
 			
 		}
-
+		
+		//Methode die das Abspielen der Musik anhält.
 		public void stopVivaldi()
 		{
 			bool toggleOff = true;
@@ -203,11 +208,13 @@ namespace WpfWeigelscheWillkuer_C_sharp
         private void btnStart_Click(object sender, RoutedEventArgs e)
         {
             playRandomVivaldi(false);
-            drawLines(true);
+            // Aufruf der Zeichnen Methode!
+			drawLines(true);
         }
 
 		Line Linie1, Linie2, Linie3, Linie4, Linie5, Linie6, Linie7, Linie8;
 		
+		//Methode zum zeichnen der Linien 
 		public void drawLines(bool draw)
 		{
 				double basisObjekte;
@@ -311,15 +318,26 @@ namespace WpfWeigelscheWillkuer_C_sharp
 				
 		}
 
-        // Kreissal (und hier schließen sich zwei Kgreise... oo ... Gute N8!) 
+        // Event zum leeren der Anzeige, wenn der Clear Button gedrückt wurde
        private void BtnclearView_Click(object sender, RoutedEventArgs e)
        {
-			removeLines();
+			removeLines(); // Remove Lines entfernt (momentan) nur das zuletzt gezeichnete Objekt!
 			this.txtEingabe.Text = string.Empty;
 			this.txtLänge.Text = string.Empty;
 			stopVivaldi();
-       }
+			
+			//überzeichnen der Rechtecke (doof)
+			Rectangle theRect = new Rectangle
+			{
+				Height = 650,
+				Width = 650,
+				Fill = new SolidColorBrush(Colors.White)
+			};
 
+			MainGrid.Children.Add(theRect);
+			
+       }
+		// Methode zum Löschen der Gezeichneten Objekte (löscht bisher nur das letzte Objekt)
 		public void removeLines()
 		{
 			MainGrid.Children.Remove(Linie8);
