@@ -1,23 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MySql.Data.MySqlClient; //Sehr wichtig!
+using System;
+using System.Media;
+using System.Reflection;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
-using MySql.Data.MySqlClient; //Sehr wichtig!
-using System.Text.RegularExpressions;
-using System.Reflection;
-using System.Media;
-using System.IO;
-
 
 namespace WpfWeigelscheWillkuer_C_sharp
 {
@@ -251,76 +240,71 @@ namespace WpfWeigelscheWillkuer_C_sharp
 				for (int i = 0; i < basisObjekte; i++)//Schreibmaschinen Methode. Wenn die Horizontale fertig ist geht es einen schritt in die vertikale
 				{
 
-					for (int k = 0; k < basisObjekte; k++) //Schleife zum erstellen der Basis Objekte Horizontal
-					{
-						Linie2 = new Line();	Linie3 = new Line();
-						Linie5 = new Line();	Linie6 = new Line(); 
-						Linie7 = new Line();	Linie8 = new Line();
+				for (int k = 0; k < basisObjekte; k++) //Schleife zum erstellen der Basis Objekte Horizontal
+				{
+					Linie2 = new Line();	Linie3 = new Line();
+					Linie5 = new Line();	Linie6 = new Line(); 
+					Linie7 = new Line();	Linie8 = new Line();
 
-						Linie2.Stroke = PickBrush();
-						Linie2.Fill = PickBrush();
-						Linie3.Stroke = PickBrush();
-						Linie3.Fill = PickBrush();
-						Linie5.Stroke = PickBrush();
-						Linie5.Fill = PickBrush();
-						Linie6.Stroke = PickBrush();
-						Linie6.Fill = PickBrush();
-						Linie7.Stroke = PickBrush();
-						Linie7.Fill = PickBrush();
-						Linie8.Stroke = PickBrush();
-						Linie8.Fill = PickBrush();
+					Linie2.Stroke = PickBrush();
+					Linie2.Fill = PickBrush();
+					Linie3.Stroke = PickBrush();
+					Linie3.Fill = PickBrush();
+					Linie5.Stroke = PickBrush();
+					Linie5.Fill = PickBrush();
+					Linie6.Stroke = PickBrush();
+					Linie6.Fill = PickBrush();
+					Linie7.Stroke = PickBrush();
+					Linie7.Fill = PickBrush();
+					Linie8.Stroke = PickBrush();
+					Linie8.Fill = PickBrush();
 
-						Linie2.X1 = tmp1 + länge;//Rechte Linie
-						Linie2.Y1 = tmp2;
-						Linie2.X2 = Linie2.X1;
-						Linie2.Y2 = Linie2.Y1 + länge;
+					Linie2.X1 = tmp1 + länge;//Rechte Linie
+					Linie2.Y1 = tmp2;
+					Linie2.X2 = Linie2.X1;
+					Linie2.Y2 = Linie2.Y1 + länge;
 
-						Linie3.X1 = Linie2.X2;//Untere Linie
-						Linie3.Y1 = Linie2.Y2;
-						Linie3.X2 = Linie3.X1 - länge;
-						Linie3.Y2 = Linie3.Y1;
+					Linie3.X1 = Linie2.X2;//Untere Linie
+					Linie3.Y1 = Linie2.Y2;
+					Linie3.X2 = Linie3.X1 - länge;
+					Linie3.Y2 = Linie3.Y1;
 
-						Linie5.X1 = tmp1;//Horizontale Trennung
-						Linie5.Y1 = tmp2 + (länge / 2);
-						Linie5.X2 = Linie5.X1 + länge;
-						Linie5.Y2 = Linie5.Y1;
+					Linie5.X1 = tmp1;//Horizontale Trennung
+					Linie5.Y1 = tmp2 + (länge / 2);
+					Linie5.X2 = Linie5.X1 + länge;
+					Linie5.Y2 = Linie5.Y1;
 
-						Linie6.X1 = tmp1 + (länge / 2);//Vertikale Trennung
-						Linie6.Y1 = Linie1.Y1;
-						Linie6.X2 = Linie6.X1;
-						Linie6.Y2 = tmp2 + länge;
+					Linie6.X1 = tmp1 + (länge / 2);//Vertikale Trennung
+					Linie6.Y1 = Linie1.Y1;
+					Linie6.X2 = Linie6.X1;
+					Linie6.Y2 = tmp2 + länge;
 
-						Linie7.X1 = Linie2.X2;//Diagonale von oben links nach unten rechts
-						Linie7.Y1 = Linie2.Y2;
-						Linie7.X2 = Linie3.X2;
-						Linie7.Y2 = Linie3.Y2 - länge;
+					Linie7.X1 = Linie2.X2;//Diagonale von oben links nach unten rechts
+					Linie7.Y1 = Linie2.Y2;
+					Linie7.X2 = Linie3.X2;
+					Linie7.Y2 = Linie3.Y2 - länge;
 
-						Linie8.X1 = Linie3.X2;//Diagonale oben rechts nach unten links
-						Linie8.Y1 = Linie3.Y2;
-						Linie8.X2 = Linie2.X1;
-						Linie8.Y2 = Linie2.Y1;
+					Linie8.X1 = Linie3.X2;//Diagonale oben rechts nach unten links
+					Linie8.Y1 = Linie3.Y2;
+					Linie8.X2 = Linie2.X1;
+					Linie8.Y2 = Linie2.Y1;
 
-						MainGrid.Children.Add(Linie2);
-						MainGrid.Children.Add(Linie3);
-						MainGrid.Children.Add(Linie5);
-						MainGrid.Children.Add(Linie6);
-						MainGrid.Children.Add(Linie7);
-						MainGrid.Children.Add(Linie8);
-
-						tmp1 = tmp1 + länge;//Berechnung für das nächste Basis Objekt in der Horizontalen Bewegung (X-Achse)
-						
-					}
-
-					tmp1 = x;//zurücksetzen auf den Anfangs X Wert wo gezeichnet wird
-					tmp2 = tmp2 + länge;//Berechnung für die nächste Zeile zum zeichnen (Y-Achse)
-
+					MainGrid.Children.Add(Linie2);
+					MainGrid.Children.Add(Linie3);
+					MainGrid.Children.Add(Linie5);
+					MainGrid.Children.Add(Linie6);
+					MainGrid.Children.Add(Linie7);
+					MainGrid.Children.Add(Linie8);
+					tmp1 = tmp1 + länge;//Berechnung für das nächste Basis Objekt in der Horizontalen Bewegung (X-Achse)
 				}
-				
+				tmp1 = x;//zurücksetzen auf den Anfangs X Wert wo gezeichnet wird
+				tmp2 = tmp2 + länge;//Berechnung für die nächste Zeile zum zeichnen (Y-Achse)
+			}
 		}
 
         // Event zum leeren der Anzeige, wenn der Clear Button gedrückt wurde
-       private void BtnclearView_Click(object sender, RoutedEventArgs e)
-       {
+		private void BtnclearView_Click(object sender, RoutedEventArgs e)
+		{
 			removeLines(); // Remove Lines entfernt (momentan) nur das zuletzt gezeichnete Objekt!
 			this.txtEingabe.Text = string.Empty;
 			this.txtLänge.Text = string.Empty;
@@ -334,9 +318,10 @@ namespace WpfWeigelscheWillkuer_C_sharp
 				Fill = new SolidColorBrush(Colors.White)
 			};
 
-			MainGrid.Children.Add(theRect);
+				MainGrid.Children.Add(theRect);
 			
-       }
+		}
+		
 		// Methode zum Löschen der Gezeichneten Objekte (löscht bisher nur das letzte Objekt)
 		public void removeLines()
 		{
@@ -348,18 +333,29 @@ namespace WpfWeigelscheWillkuer_C_sharp
 			MainGrid.Children.Remove(Linie3);
 			MainGrid.Children.Remove(Linie4);
 			MainGrid.Children.Remove(Linie1);
-			
 		}	
-			
-		
 
-        //Friedhof (lieber Herr Gertz, Standardkonstruktoren an diesen Ort zu verbannen tztztzt... )
-        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e) { }
-            private void BtnLaden_Click(object sender, RoutedEventArgs e) { }
-            private void BtnSpeichern_Click(object sender, RoutedEventArgs e) { }
-            private void btnErstellen_Click(object sender, RoutedEventArgs e) { }
-            private void BtnLöschen_Click(object sender, RoutedEventArgs e) { }
-            private void cb_Databases_SelectionChanged(object sender, SelectionChangedEventArgs e) { }
-            private void fill_cb_UseDatabase() { }
+		//Friedhof (lieber Herr Gertz, Standardkonstruktoren an diesen Ort zu verbannen tztztzt... )
+		private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e) { }
+		private void BtnLaden_Click(object sender, RoutedEventArgs e) { }
+		private void BtnSpeichern_Click(object sender, RoutedEventArgs e) { }
+		private void btnErstellen_Click(object sender, RoutedEventArgs e) { }
+		private void BtnLöschen_Click(object sender, RoutedEventArgs e) { }
+		private void cb_Databases_SelectionChanged(object sender, SelectionChangedEventArgs e) { }
+		private void fill_cb_UseDatabase() { }
 	}
 }
+
+//Bereich zwischen Friedhof und Erdmittelpunkt...
+/*
+using System.Windows.Navigation;
+using System.Windows.Input;
+using System.Windows.Media.Imaging;
+using System.Windows.Data;
+using System.Threading.Tasks;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Windows.Documents;
+using System.IO;
+*/
