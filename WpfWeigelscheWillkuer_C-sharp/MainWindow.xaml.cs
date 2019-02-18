@@ -8,6 +8,10 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
 
+// GeometryDrawing &&
+// https://stackoverflow.com/questions/7366574/how-to-draw-graphics-as-efficiently-as-possible-in-wpf?rq=1
+// https://docs.microsoft.com/en-us/dotnet/api/system.windows.media.drawinggroup
+
 namespace WpfWeigelscheWillkuer_C_sharp
 {
 	/// <summary>
@@ -137,6 +141,69 @@ namespace WpfWeigelscheWillkuer_C_sharp
 			//App.Current.MainWindow.Hide();
 		}
 
+		//	Pastel Random Color
+		//	Pastel: 87CEEB,32CD32,BA55D3,F08080,4682B4,9ACD32,40E0D0,FF69B4,
+		//	F0E68C,D2B48C,8FBC8B,6495ED,DDA0DD,5F9EA0,FFDAB9,FFA07A
+
+		public Brush randomPastelBrush()
+		{
+			Brush[] pastels = new Brush[16]
+			{
+				Brushes.SkyBlue,
+				Brushes.LimeGreen,
+				Brushes.MediumOrchid,
+				Brushes.LightCoral,
+				Brushes.SteelBlue,
+				Brushes.YellowGreen,
+				Brushes.Turquoise,
+				Brushes.HotPink,
+				Brushes.Khaki,
+				Brushes.Tan,
+				Brushes.DarkSeaGreen,
+				Brushes.CornflowerBlue,
+				Brushes.Plum,
+				Brushes.CadetBlue,
+				Brushes.PeachPuff,
+				Brushes.LightSalmon
+			};
+			Random random = new Random();
+			Brush brush = pastels[random.Next(pastels.Length)];
+			return brush;
+		}
+
+		//	zarte Pastel Random Color
+		public Brush zarterPastelBrush()
+		{
+			return new SolidColorBrush(zartePasteldefinieren()); //geiler scheiß!
+		}
+
+		//	BrightPastel: 418CF0,FCB441,DF3A02,056492,BFBFBF,1A3B69,FFE382,
+		//	129CDD,CA6B4B,005CDB,F3D288,506381,F1B9A8,E0830A,7893BE
+		private Color zartePasteldefinieren()
+		{
+			Color[] zartePastelfarben = new Color[15]
+			{
+				Color.FromRgb(41,140,240),
+				Color.FromRgb(252,180,41),
+				Color.FromRgb(223,58,2),
+				Color.FromRgb(05,64,92),
+				Color.FromRgb(191,191,191),
+				Color.FromRgb(26,59,69),
+				Color.FromRgb(255,227,82),
+				Color.FromRgb(12,156,221),
+				Color.FromRgb(202,107,75),
+				Color.FromRgb(0,92,219),
+				Color.FromRgb(243,210,88),
+				Color.FromRgb(50,63,81),
+				Color.FromRgb(241,185,168),
+				Color.FromRgb(224,83,10), //warum ist 14 * 16 < 15 * 15 und die differenz 16...
+				Color.FromRgb(78,93,190)
+			};
+			Random random = new Random();
+			Color zartesPastel = zartePastelfarben[random.Next(zartePastelfarben.Length)];
+			return zartesPastel;
+		}
+
 		public Brush PickBrush() //Zufällige Farbe für die Linie
 		{
 			Brush result = Brushes.Transparent;
@@ -198,12 +265,15 @@ namespace WpfWeigelscheWillkuer_C_sharp
 		//Ab hier beginnt die Berechnung und Darstellung des Fraktales
 		private void btnStart_Click(object sender, RoutedEventArgs e)
 		{
-			playRandomVivaldi(false);
+			//playRandomVivaldi(false);
 			// Aufruf der Zeichnen Methode!
 			drawLines(true);
 		}
 
 		private Line Linie1, Linie2, Linie3, Linie4, Linie5, Linie6, Linie7, Linie8;
+
+		//	TODO: Hier ein mal Zeichen und dann Transformieren damit anzahl der
+		//	Operationen reduzieren & ggf. Objekte freigeben
 
 		//Methode zum zeichnen der Linien
 		public void drawLines(bool draw)
@@ -221,10 +291,10 @@ namespace WpfWeigelscheWillkuer_C_sharp
 
 			//Linie 1 und 4 werden insgesamt nur einmal gezeichnet
 			Linie1 = new Line(); Linie4 = new Line();
-			Linie1.Stroke = PickBrush();
-			Linie1.Fill = PickBrush();
-			Linie4.Stroke = PickBrush();
-			Linie4.Fill = PickBrush();
+			Linie1.Stroke = zarterPastelBrush();
+			Linie1.Fill = zarterPastelBrush();
+			Linie4.Stroke = zarterPastelBrush();
+			Linie4.Fill = zarterPastelBrush();
 			Linie1.X1 = tmp1;//Obere Linie
 			Linie1.Y1 = tmp2;
 			Linie1.X2 = Linie1.X1 + gesamtlänge;
@@ -239,7 +309,8 @@ namespace WpfWeigelscheWillkuer_C_sharp
 			basisObjekte = Math.Pow(2, layer); //Berechnung der Basis Objekte in einer Reihe sowie Spalte
 			länge = gesamtlänge / basisObjekte; //Berechnung der Länge für die Seiten des Basis Objektes
 
-			for (int i = 0; i < basisObjekte; i++)//Schreibmaschinen Methode. Wenn die Horizontale fertig ist geht es einen schritt in die vertikale
+			for (int i = 0; i < basisObjekte; i++)//Schreibmaschinen Methode.
+												  //Wenn die Horizontale fertig ist geht es einen schritt in die vertikale
 			{
 				for (int k = 0; k < basisObjekte; k++) //Schleife zum erstellen der Basis Objekte Horizontal
 				{
@@ -247,18 +318,18 @@ namespace WpfWeigelscheWillkuer_C_sharp
 					Linie5 = new Line(); Linie6 = new Line();
 					Linie7 = new Line(); Linie8 = new Line();
 
-					Linie2.Stroke = PickBrush();
-					Linie2.Fill = PickBrush();
-					Linie3.Stroke = PickBrush();
-					Linie3.Fill = PickBrush();
-					Linie5.Stroke = PickBrush();
-					Linie5.Fill = PickBrush();
-					Linie6.Stroke = PickBrush();
-					Linie6.Fill = PickBrush();
-					Linie7.Stroke = PickBrush();
-					Linie7.Fill = PickBrush();
-					Linie8.Stroke = PickBrush();
-					Linie8.Fill = PickBrush();
+					Linie2.Stroke = zarterPastelBrush();
+					Linie3.Stroke = zarterPastelBrush();
+					Linie5.Stroke = zarterPastelBrush();
+					Linie6.Stroke = zarterPastelBrush();
+					Linie7.Stroke = zarterPastelBrush();
+					Linie8.Stroke = zarterPastelBrush();
+					Linie2.Fill = zarterPastelBrush();
+					Linie3.Fill = zarterPastelBrush();
+					Linie5.Fill = zarterPastelBrush();
+					Linie6.Fill = zarterPastelBrush();
+					Linie7.Fill = zarterPastelBrush();
+					Linie8.Fill = zarterPastelBrush();
 
 					Linie2.X1 = tmp1 + länge;//Rechte Linie
 					Linie2.Y1 = tmp2;
@@ -303,7 +374,19 @@ namespace WpfWeigelscheWillkuer_C_sharp
 				tmp1 = x;//zurücksetzen auf den Anfangs X Wert wo gezeichnet wird
 				tmp2 = tmp2 + länge;//Berechnung für die nächste Zeile zum zeichnen (Y-Achse)
 			}
+			Linie1 = null;
+			Linie2 = null;
+			Linie3 = null;
+			Linie4 = null;
+			Linie5 = null;
+			Linie6 = null;
+			Linie7 = null;
+			Linie8 = null;
 		}
+
+		// TODO: ´hier noch eine Variante zum leeren vor dem Neu zeichnen... (ohne Textboxen zu leeren...)
+		// & gc() 
+		//
 
 		// Event zum leeren der Anzeige, wenn der Clear Button gedrückt wurde
 		private void BtnclearView_Click(object sender, RoutedEventArgs e)
@@ -311,7 +394,7 @@ namespace WpfWeigelscheWillkuer_C_sharp
 			removeLines(); // Remove Lines entfernt (momentan) nur das zuletzt gezeichnete Objekt!
 			this.txtEingabe.Text = string.Empty;
 			this.txtLänge.Text = string.Empty;
-			stopVivaldi();
+			//stopVivaldi();
 
 			//überzeichnen der Rechtecke (doof)
 			Rectangle theRect = new Rectangle
