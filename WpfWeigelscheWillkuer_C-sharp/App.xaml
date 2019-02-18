@@ -4,6 +4,5 @@
              xmlns:local="clr-namespace:WpfWeigelscheWillkuer_C_sharp"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-
     </Application.Resources>
 </Application>
