@@ -8,19 +8,19 @@
         Title="Fraktal3Dproto" Height="450" Width="800">
 
     <Grid>
-        <ScrollBar x:Name="Scrollbar_X" HorizontalAlignment="Left" Margin="767,10,0,0" VerticalAlignment="Top" Orientation="Vertical" LargeChange="10" 
-                   SmallChange="1" Minimum="-180" Maximum ="180" Value ="0" ValueChanged="Scrollbar_X_ValueChanged" Width="17" Height="400" Background="#FFC1FABB"/>
-        <ScrollBar x:Name="Scrollbar_Y" HorizontalAlignment="Left" Margin="10,393,0,0" VerticalAlignment="Top" Orientation="Horizontal" Minimum ="-180" Maximum="180" 
-                   LargeChange="10" SmallChange="1" Value ="0" ValueChanged="Scrollbar_Y_ValueChanged" Width="752" Height="17" Background="#FFC1FABB"/>
+        <ScrollBar x:Name="Scrollbar_X" HorizontalAlignment="Left" Margin="767,10,0,0" VerticalAlignment="Top" Orientation="Vertical" LargeChange="10"
+                   SmallChange="1" Minimum="-180" Maximum ="180" Value ="0" ValueChanged="Scrollbar_X_ValueChanged" Width="17" Height="400" Background="#FFC1FABB" />
+        <ScrollBar x:Name="Scrollbar_Y" HorizontalAlignment="Left" Margin="10,393,0,0" VerticalAlignment="Top" Orientation="Horizontal" Minimum ="-180" Maximum="180"
+                   LargeChange="10" SmallChange="1" Value ="0" ValueChanged="Scrollbar_Y_ValueChanged" Width="752" Height="17" Background="#FFC1FABB" />
 
         <Viewport3D Margin="4,4,4,4" RenderTransformOrigin="0.574,0.47" PreviewMouseWheel="Viewport3D_PreviewMouseWheel">
 
             <ModelVisual3D x:Name="Cube">
                 <ModelVisual3D.Content>
                     <Model3DGroup>
-                        <AmbientLight Color="LightGreen"/>
-                        <DirectionalLight Color="Gray" Direction="1,-2,-3"/>
-                        <DirectionalLight Color="LawnGreen" Direction="-1,2,3"/>
+                        <AmbientLight Color="LightGreen" />
+                        <DirectionalLight Color="Gray" Direction="1,-2,-3" />
+                        <DirectionalLight Color="LawnGreen" Direction="-1,2,3" />
 
                         <!--Würfelflächen angeordnet mit einer Länge von 52, damit 51 Flächen in den Würfel eingehangen werden können
                         Ebene 1 entspricht der Vorderseite des Würfels-->
@@ -33,25 +33,24 @@
                                                 -26,-26,-26       -26,-26,26            -26,26,26       -26,26,-26
                                                 -26,26,26           26,26,26            26,26,-26     -26,26,-26
                                                 26,-26,26           -26,-26,26          -26,-26,-26      26,-26,-26
-                                                   "                                             
+                                                   "
                                                 TriangleIndices="
-                                                0 1 2       2 3 0   
+                                                0 1 2       2 3 0
                                                 4 5 6       6 7 4
                                                 8 9 10      10 11 8
                                                 12 13 14    14 15 12
                                                 16 17 18    18 19 16
                                                 20 21 22    22 23 20
-                                                "
-                                                />
+                                                " />
                             </GeometryModel3D.Geometry>
                             <GeometryModel3D.Material>
-                                <DiffuseMaterial Brush="GhostWhite"/>
+                                <DiffuseMaterial Brush="GhostWhite" />
                             </GeometryModel3D.Material>
                             <GeometryModel3D.BackMaterial>
-                                <DiffuseMaterial Brush="CornflowerBlue"/>
+                                <DiffuseMaterial Brush="CornflowerBlue" />
                             </GeometryModel3D.BackMaterial>
                             <GeometryModel3D.Transform>
-                                <ScaleTransform3D ScaleX="1" ScaleY="1" ScaleZ="1" CenterX="0" CenterY="0" CenterZ="0"/>
+                                <ScaleTransform3D ScaleX="1" ScaleY="1" ScaleZ="1" CenterX="0" CenterY="0" CenterZ="0" />
                             </GeometryModel3D.Transform>
                         </GeometryModel3D>
 
@@ -59,45 +58,41 @@
                         <GeometryModel3D x:Name="Area1">
                             <GeometryModel3D.Geometry>
                                 <MeshGeometry3D Positions="-20,-20,26   20,-20,26    20,20,26    -20,20,26"
-                                                    TriangleIndices="0 1 2  2 3 0"
-                                                    />
+                                                    TriangleIndices="0 1 2  2 3 0" />
                             </GeometryModel3D.Geometry>
                             <GeometryModel3D.Material>
                                 <DiffuseMaterial Brush="GhostWhite" />
                             </GeometryModel3D.Material>
                             <GeometryModel3D.BackMaterial>
-                                <DiffuseMaterial Brush="Violet"/>
+                                <DiffuseMaterial Brush="Violet" />
                             </GeometryModel3D.BackMaterial>
                         </GeometryModel3D>
 
                         <GeometryModel3D x:Name="Area2">
                             <GeometryModel3D.Geometry>
                                 <MeshGeometry3D Positions= "-20,-20,25   20,-20,25    20,20,25    -20,20,25"
-                                                    TriangleIndices="0 1 2  2 3 0"
-                                                    />
+                                                    TriangleIndices="0 1 2  2 3 0" />
                             </GeometryModel3D.Geometry>
                             <GeometryModel3D.Material>
-                                <DiffuseMaterial Brush="Violet"/>
+                                <DiffuseMaterial Brush="Violet" />
                             </GeometryModel3D.Material>
                             <GeometryModel3D.BackMaterial>
-                                <DiffuseMaterial Brush="Violet"/>
+                                <DiffuseMaterial Brush="Violet" />
                             </GeometryModel3D.BackMaterial>
                         </GeometryModel3D>
 
                         <GeometryModel3D x:Name="Area3">
                             <GeometryModel3D.Geometry>
                                 <MeshGeometry3D Positions= "-20,-20,24   20,-20,24    20,20,24    -20,20,24"
-                                                    TriangleIndices="0 1 2  2 3 0"
-                                                    />
+                                                    TriangleIndices="0 1 2  2 3 0" />
                             </GeometryModel3D.Geometry>
                             <GeometryModel3D.Material>
-                                <DiffuseMaterial Brush="MistyRose"/>
+                                <DiffuseMaterial Brush="MistyRose" />
                             </GeometryModel3D.Material>
                             <GeometryModel3D.BackMaterial>
-                                <DiffuseMaterial Brush="Violet"/>
+                                <DiffuseMaterial Brush="Violet" />
                             </GeometryModel3D.BackMaterial>
                         </GeometryModel3D>
-
                     </Model3DGroup>
                 </ModelVisual3D.Content>
 
@@ -131,5 +126,4 @@
         <Label x:Name="angleContent_y" Content="Y - Achse: 0° " HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="2.859,1.734" Margin="333,10,0,0" Width="101" Height="36"></Label>
         <Label x:Name="angleContent_x" Content="X - Achse: 0° " Margin="594,182,100.6,206" RenderTransformOrigin="0.46,2.075"></Label>
     </Grid>
-
 </Window>
