@@ -204,21 +204,21 @@ namespace WpfWeigelscheWillkuer_C_sharp
 			return zartesPastel;
 		}
 
-		public Brush PickBrush() //Zufällige Farbe für die Linie
-		{
-			Brush result = Brushes.Transparent;
+		//public Brush PickBrush() //Zufällige Farbe für die Linie
+		//{
+		//	Brush result = Brushes.Transparent;
 
-			Random rnd = new Random();
+		//	Random rnd = new Random();
 
-			Type brushesType = typeof(Brushes);
+		//	Type brushesType = typeof(Brushes);
 
-			PropertyInfo[] properties = brushesType.GetProperties();
+		//	PropertyInfo[] properties = brushesType.GetProperties();
 
-			int random = rnd.Next(properties.Length);
-			result = (Brush)properties[random].GetValue(null, null);
+		//	int random = rnd.Next(properties.Length);
+		//	result = (Brush)properties[random].GetValue(null, null);
 
-			return result;
-		}
+		//	return result;
+		//}
 
 		//Methode die den Soundplayer zum Abspielen der vivaldi.wav auffordert
 		public void playRandomVivaldi(bool toggleOff)
@@ -272,21 +272,23 @@ namespace WpfWeigelscheWillkuer_C_sharp
 
 		private Line Linie1, Linie2, Linie3, Linie4, Linie5, Linie6, Linie7, Linie8;
 
-		//	TODO: Hier ein mal Zeichen und dann Transformieren damit anzahl der
-		//	Operationen reduzieren & ggf. Objekte freigeben
+        //	TODO: Hier ein mal Zeichen und dann Transformieren damit anzahl der
+        //	Operationen reduzieren & ggf. Objekte freigeben
 
-		//Methode zum zeichnen der Linien
-		public void drawLines(bool draw)
+        double basisObjekte;
+        int layer = 0;
+        double gesamtlänge;
+        double länge;
+        
+
+        //Methode zum zeichnen der Linien
+        public void drawLines(bool draw)
 		{
-			double basisObjekte;
-			int layer = 0;
-			double gesamtlänge;
-			double länge;
-			double x = 300; //X-Wert für den Beginn
-			double tmp1 = 300; //X-Wert für den Beginn
-			double tmp2 = 100; //Y-Wert für den Beginn
+            double x = 300; //X-Wert für den Beginn
+            double tmp1 = 300; //X-Wert für den Beginn
+            double tmp2 = 100; //Y-Wert für den Beginn
 
-			Double.TryParse(txtLänge.Text, out gesamtlänge);
+            Double.TryParse(txtLänge.Text, out gesamtlänge);
 			Int32.TryParse(txtEingabe.Text, out layer);
 
 			//Linie 1 und 4 werden insgesamt nur einmal gezeichnet
@@ -399,8 +401,9 @@ namespace WpfWeigelscheWillkuer_C_sharp
 			//überzeichnen der Rechtecke (doof)
 			Rectangle theRect = new Rectangle
 			{
-				Height = 650,
-				Width = 650,
+
+				Height = gesamtlänge*1.2,
+				Width = gesamtlänge*1.2,
 				Fill = new SolidColorBrush(Colors.White)
 			};
 
