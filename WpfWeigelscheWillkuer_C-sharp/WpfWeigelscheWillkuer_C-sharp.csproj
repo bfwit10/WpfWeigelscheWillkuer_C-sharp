@@ -86,6 +86,7 @@
     <Compile Include="Fraktal3Dproto.xaml.cs">
       <DependentUpon>Fraktal3Dproto.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GeoObject.cs" />
     <Compile Include="GlobalVariables.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -93,6 +94,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Pastel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
