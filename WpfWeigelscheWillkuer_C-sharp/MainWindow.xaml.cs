@@ -24,10 +24,10 @@ namespace WpfWeigelscheWillkuer_C_sharp
 		public MainWindow()
 		{
 			InitializeComponent();
-			fill_cb_UseDatabase(); //Auskommentiert weil die Methode auf dem Friehof (s.u.) gelandet ist...
+			Fill_cb_UseDatabase(); //Auskommentiert weil die Methode auf dem Friehof (s.u.) gelandet ist...
 		}
 
-		private void btnExit_Click(object sender, RoutedEventArgs e) //zum schliessen der gesamten Form
+		private void _btnExit_Click(object sender, RoutedEventArgs e) //zum schliessen der gesamten Form
 		{
 			System.Windows.Application.Current.Shutdown();
 		}
@@ -40,7 +40,7 @@ namespace WpfWeigelscheWillkuer_C_sharp
 			MessageBoxResult result = MessageBox.Show(message);
 		}
 
-		private void btnladen_Click(object sender, RoutedEventArgs e)
+		private void _btnladen_Click(object sender, RoutedEventArgs e)
 		{
 			//lade button
 			// Configure message box
@@ -49,9 +49,9 @@ namespace WpfWeigelscheWillkuer_C_sharp
 			MessageBoxResult result = MessageBox.Show(message);
 		}
 
-		private void btnAbspeichern_Click(object sender, RoutedEventArgs e)
+		private void _btnAbspeichern_Click(object sender, RoutedEventArgs e)
 		{
-			int pin, ebene, id = 0;
+			int id = 0;
 
 			string maxid = "use Fraktal; select max(id) from WWUser;";
 			MySqlConnection conDataBase = new MySqlConnection(Connection); //Connection zur Datenbank
@@ -86,7 +86,7 @@ namespace WpfWeigelscheWillkuer_C_sharp
 				RegexOptions.IgnoreCase);
 				if (!match.Success)
 				{
-					if (int.TryParse(txtPin.Text, out pin) || int.TryParse(txtPin.Text, out ebene)) //Überprüfung ob Pin und Ebene jeweils eine Zahl sind
+					if (int.TryParse(txtPin.Text, out int pin) || int.TryParse(txtPin.Text, out int ebene)) //Überprüfung ob Pin und Ebene jeweils eine Zahl sind
 					{
 						try
 						{
@@ -124,7 +124,7 @@ namespace WpfWeigelscheWillkuer_C_sharp
 		 *	zuletzt um den nach wie vor angestrebten M)
 		 */
 
-		private void btnFraktal3Dproto_Click(object sender, RoutedEventArgs e)
+		private void _btnFraktal3Dproto_Click(object sender, RoutedEventArgs e)
 		{
 			Fraktal3Dproto Fraktal3dPROTO = new Fraktal3Dproto()
 			{
@@ -145,7 +145,7 @@ namespace WpfWeigelscheWillkuer_C_sharp
 		//	Pastel: 87CEEB,32CD32,BA55D3,F08080,4682B4,9ACD32,40E0D0,FF69B4,
 		//	F0E68C,D2B48C,8FBC8B,6495ED,DDA0DD,5F9EA0,FFDAB9,FFA07A
 
-		public Brush randomPastelBrush()
+		public Brush RandomPastelBrush()
 		{
 			Brush[] pastels = new Brush[16]
 			{
@@ -172,14 +172,14 @@ namespace WpfWeigelscheWillkuer_C_sharp
 		}
 
 		//	zarte Pastel Random Color
-		public Brush zarterPastelBrush()
+		public Brush ZarterPastelBrush()
 		{
-			return new SolidColorBrush(zartePasteldefinieren()); //geiler scheiß!
+			return new SolidColorBrush(_zartePasteldefinieren()); //geiler scheiß!
 		}
 
 		//	BrightPastel: 418CF0,FCB441,DF3A02,056492,BFBFBF,1A3B69,FFE382,
 		//	129CDD,CA6B4B,005CDB,F3D288,506381,F1B9A8,E0830A,7893BE
-		private Color zartePasteldefinieren()
+		private Color _zartePasteldefinieren()
 		{
 			Color[] zartePastelfarben = new Color[15]
 			{
@@ -221,7 +221,7 @@ namespace WpfWeigelscheWillkuer_C_sharp
 		//}
 
 		//Methode die den Soundplayer zum Abspielen der vivaldi.wav auffordert
-		public void playRandomVivaldi(bool toggleOff)
+		public void PlayRandomVivaldi(bool toggleOff)
 		{
 			SoundPlayer simpleSound = new SoundPlayer();
 			if (!toggleOff)
@@ -256,18 +256,18 @@ namespace WpfWeigelscheWillkuer_C_sharp
 		}
 
 		//Methode die das Abspielen der Musik anhält.
-		public void stopVivaldi()
+		public void StopVivaldi()
 		{
 			bool toggleOff = true;
-			playRandomVivaldi(toggleOff);
+			PlayRandomVivaldi(toggleOff);
 		}
 
 		//Ab hier beginnt die Berechnung und Darstellung des Fraktales
-		private void btnStart_Click(object sender, RoutedEventArgs e)
+		private void _btnStart_Click(object sender, RoutedEventArgs e)
 		{
 			//playRandomVivaldi(false);
 			// Aufruf der Zeichnen Methode!
-			drawLines(true);
+			DrawLines(true);
 		}
 
 		private Line Linie1, Linie2, Linie3, Linie4, Linie5, Linie6, Linie7, Linie8;
@@ -282,7 +282,7 @@ namespace WpfWeigelscheWillkuer_C_sharp
         
 
         //Methode zum zeichnen der Linien
-        public void drawLines(bool draw)
+        public void DrawLines(bool draw)
 		{
             double x = 300; //X-Wert für den Beginn
             double tmp1 = 300; //X-Wert für den Beginn
@@ -293,10 +293,10 @@ namespace WpfWeigelscheWillkuer_C_sharp
 
 			//Linie 1 und 4 werden insgesamt nur einmal gezeichnet
 			Linie1 = new Line(); Linie4 = new Line();
-			Linie1.Stroke = zarterPastelBrush();
-			Linie1.Fill = zarterPastelBrush();
-			Linie4.Stroke = zarterPastelBrush();
-			Linie4.Fill = zarterPastelBrush();
+			Linie1.Stroke = ZarterPastelBrush();
+			Linie1.Fill = ZarterPastelBrush();
+			Linie4.Stroke = ZarterPastelBrush();
+			Linie4.Fill = ZarterPastelBrush();
 			Linie1.X1 = tmp1;//Obere Linie
 			Linie1.Y1 = tmp2;
 			Linie1.X2 = Linie1.X1 + gesamtlänge;
@@ -320,18 +320,18 @@ namespace WpfWeigelscheWillkuer_C_sharp
 					Linie5 = new Line(); Linie6 = new Line();
 					Linie7 = new Line(); Linie8 = new Line();
 
-					Linie2.Stroke = zarterPastelBrush();
-					Linie3.Stroke = zarterPastelBrush();
-					Linie5.Stroke = zarterPastelBrush();
-					Linie6.Stroke = zarterPastelBrush();
-					Linie7.Stroke = zarterPastelBrush();
-					Linie8.Stroke = zarterPastelBrush();
-					Linie2.Fill = zarterPastelBrush();
-					Linie3.Fill = zarterPastelBrush();
-					Linie5.Fill = zarterPastelBrush();
-					Linie6.Fill = zarterPastelBrush();
-					Linie7.Fill = zarterPastelBrush();
-					Linie8.Fill = zarterPastelBrush();
+					Linie2.Stroke = ZarterPastelBrush();
+					Linie3.Stroke = ZarterPastelBrush();
+					Linie5.Stroke = ZarterPastelBrush();
+					Linie6.Stroke = ZarterPastelBrush();
+					Linie7.Stroke = ZarterPastelBrush();
+					Linie8.Stroke = ZarterPastelBrush();
+					Linie2.Fill = ZarterPastelBrush();
+					Linie3.Fill = ZarterPastelBrush();
+					Linie5.Fill = ZarterPastelBrush();
+					Linie6.Fill = ZarterPastelBrush();
+					Linie7.Fill = ZarterPastelBrush();
+					Linie8.Fill = ZarterPastelBrush();
 
 					Linie2.X1 = tmp1 + länge;//Rechte Linie
 					Linie2.Y1 = tmp2;
@@ -393,34 +393,53 @@ namespace WpfWeigelscheWillkuer_C_sharp
 		// Event zum leeren der Anzeige, wenn der Clear Button gedrückt wurde
 		private void BtnclearView_Click(object sender, RoutedEventArgs e)
 		{
-			removeLines(); // Remove Lines entfernt (momentan) nur das zuletzt gezeichnete Objekt!
-			this.txtEingabe.Text = string.Empty;
-			this.txtLänge.Text = string.Empty;
+			//removeLines(); // Remove Lines entfernt (momentan) nur das zuletzt gezeichnete Objekt!
+			//this.txtEingabe.Text = string.Empty;
+			//this.txtLänge.Text = string.Empty;
 			//stopVivaldi();
 
 			//überzeichnen der Rechtecke (doof)
 			Rectangle theRect = new Rectangle
 			{
 
-				Height = gesamtlänge*1.2,
-				Width = gesamtlänge*1.2,
+				Height = gesamtlänge * 1.2,
+				Width = gesamtlänge * 1.2,
 				Fill = new SolidColorBrush(Colors.White)
 			};
 
-			MainGrid.Children.Add(theRect);
+			PanelCollectionContent();
+			//MainGrid.Children.Add(theRect);
+			GC.Collect();
 		}
+		//// Methode zum Löschen der Gezeichneten Objekte (löscht bisher nur das letzte Objekt)
+		//public void removeLines()
+		//{
+		//	MainGrid.Children.Remove(Linie8);
+		//	MainGrid.Children.Remove(Linie7);
+		//	MainGrid.Children.Remove(Linie2);
+		//	MainGrid.Children.Remove(Linie6);
+		//	MainGrid.Children.Remove(Linie5);
+		//	MainGrid.Children.Remove(Linie3);
+		//	MainGrid.Children.Remove(Linie4);
+		//	MainGrid.Children.Remove(Linie1);
+		//}
 
-		// Methode zum Löschen der Gezeichneten Objekte (löscht bisher nur das letzte Objekt)
-		public void removeLines()
+		// Metode zum Debuggen der panel collection.
+		public void PanelCollectionContent()
 		{
-			MainGrid.Children.Remove(Linie8);
-			MainGrid.Children.Remove(Linie7);
-			MainGrid.Children.Remove(Linie2);
-			MainGrid.Children.Remove(Linie6);
-			MainGrid.Children.Remove(Linie5);
-			MainGrid.Children.Remove(Linie3);
-			MainGrid.Children.Remove(Linie4);
-			MainGrid.Children.Remove(Linie1);
+			// MainGrid.Children.CopyTo();
+			var Counter = MainGrid.Children.Count;
+			
+			MainGrid.Children.RemoveRange(15,Counter-15);
+			var Counter2 = MainGrid.Children.Count;
+			var Counter3 = MainGrid.Children.IndexOf(Linie3);
+			
+			// Configure message box
+			string message =	$"In MainGrid.Children befinden sich: {Counter},dann {Counter2} Elemente! \n" +
+								$"Index of last line Obj.: {Counter3}";
+			// Show message box
+			MessageBoxResult result = MessageBox.Show(message);
+
 		}
 
 		//Friedhof (lieber Herr Gertz, Standardkonstruktoren an diesen Ort zu verbannen tztztzt... )
@@ -434,7 +453,7 @@ namespace WpfWeigelscheWillkuer_C_sharp
 		{
 		}
 
-		private void btnErstellen_Click(object sender, RoutedEventArgs e)
+		private void BtnErstellen_Click(object sender, RoutedEventArgs e)
 		{
 		}
 
@@ -442,11 +461,11 @@ namespace WpfWeigelscheWillkuer_C_sharp
 		{
 		}
 
-		private void cb_Databases_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		private void Cb_Databases_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
 		}
 
-		private void fill_cb_UseDatabase()
+		private void Fill_cb_UseDatabase()
 		{
 		}
 	}
