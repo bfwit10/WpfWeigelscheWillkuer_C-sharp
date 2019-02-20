@@ -19,6 +19,36 @@ namespace WpfWeigelscheWillkuer_C_sharp
 	/// </summary>
 	public partial class MainWindow : Window
 	{
+
+		private int myVar;
+		private int myVarA;
+		private int myVarB;
+		private int myVarC;
+
+		public int MyProperty
+		{
+		  get { return myVar; }
+		  set { myVar = value; }
+		}
+
+		public int MyPropertyA
+		{
+		  get { return myVar; }
+		  set { myVar = value; }
+		}
+
+		public int MyPropertyB
+		{
+		  get { return myVar; }
+		  set { myVar = value; }
+		}
+
+		public int MyPropertyC
+		{
+		  get { return myVar; }
+		  set { myVar = value; }
+		}
+
 		private string Connection = GlobalVariables.GlobalMySqlCon; //Für die Verbindung an unsere Datenbank
 
 		public MainWindow()
@@ -134,6 +164,7 @@ namespace WpfWeigelscheWillkuer_C_sharp
 				ShowInTaskbar = false,
 				Owner = this
 			};
+			
 			Fraktal3dPROTO.ShowDialog();
 
 			//Action!
@@ -305,6 +336,7 @@ namespace WpfWeigelscheWillkuer_C_sharp
 			Linie4.Y1 = Linie1.Y1;
 			Linie4.X2 = Linie4.X1;
 			Linie4.Y2 = Linie4.Y1 + gesamtlänge;
+			
 			MainGrid.Children.Add(Linie1);
 			MainGrid.Children.Add(Linie4);
 
@@ -399,30 +431,21 @@ namespace WpfWeigelscheWillkuer_C_sharp
 			//stopVivaldi();
 
 			//überzeichnen der Rechtecke (doof)
-			Rectangle theRect = new Rectangle
-			{
+			//Rectangle theRect = new Rectangle
+			//{
 
-				Height = gesamtlänge * 1.2,
-				Width = gesamtlänge * 1.2,
-				Fill = new SolidColorBrush(Colors.White)
-			};
+			//	Height = gesamtlänge * 1.2,
+			//	Width = gesamtlänge * 1.2,
+			//	Fill = new SolidColorBrush(Colors.White)
+			//};
 
-			PanelCollectionContent();
+			//PanelCollectionContent();
+			//MainGrid.Children.Remove(Linie2);
+			MainGrid.Children.RemoveRange(15, MainGrid.Children.Count - 15);
+			// Dispose() nach migration in externe Klasse mit IDisposable...
 			//MainGrid.Children.Add(theRect);
-			GC.Collect();
+			GC.Collect(2);
 		}
-		//// Methode zum Löschen der Gezeichneten Objekte (löscht bisher nur das letzte Objekt)
-		//public void removeLines()
-		//{
-		//	MainGrid.Children.Remove(Linie8);
-		//	MainGrid.Children.Remove(Linie7);
-		//	MainGrid.Children.Remove(Linie2);
-		//	MainGrid.Children.Remove(Linie6);
-		//	MainGrid.Children.Remove(Linie5);
-		//	MainGrid.Children.Remove(Linie3);
-		//	MainGrid.Children.Remove(Linie4);
-		//	MainGrid.Children.Remove(Linie1);
-		//}
 
 		// Metode zum Debuggen der panel collection.
 		public void PanelCollectionContent()
@@ -430,7 +453,7 @@ namespace WpfWeigelscheWillkuer_C_sharp
 			// MainGrid.Children.CopyTo();
 			var Counter = MainGrid.Children.Count;
 			
-			MainGrid.Children.RemoveRange(15,Counter-15);
+			//MainGrid.Children.RemoveRange(15,Counter-15);
 			var Counter2 = MainGrid.Children.Count;
 			var Counter3 = MainGrid.Children.IndexOf(Linie3);
 			

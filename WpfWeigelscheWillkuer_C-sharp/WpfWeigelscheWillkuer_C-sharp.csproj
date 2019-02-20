@@ -71,6 +71,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="GeoObject.cs" />
+    <Compile Include="Pastel.cs" />
     <Compile Include="WeigelschesObjekte.cs" />
     <Page Include="Fraktal3Dproto.xaml">
       <SubType>Designer</SubType>
