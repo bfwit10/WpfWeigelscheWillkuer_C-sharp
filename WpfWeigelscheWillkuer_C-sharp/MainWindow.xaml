@@ -9,14 +9,14 @@
     <Grid x:Name="MainGrid" FocusManager.FocusedElement="{Binding ElementName=txtLänge}">
         <Button x:Name="btnExit" Content="Beenden" HorizontalAlignment="Left" Margin="547,712,0,0" VerticalAlignment="Top" Width="75" Click="_btnExit_Click" />
         <TextBox x:Name="txtEbene" HorizontalAlignment="Left" Height="23" Margin="937,449,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" />
-        <Label x:Name="lblEbene" Content="Ebene" HorizontalAlignment="Left" Margin="1062,454,0,0" VerticalAlignment="Top" Height="23" />
-        <Label x:Name="lblPin" Content="Pin" HorizontalAlignment="Left" Margin="1062,423,0,0" VerticalAlignment="Top" />
+        <Label x:Name="lblEbene" Content="Ebene" HorizontalAlignment="Left" Margin="1062,450,0,0" VerticalAlignment="Top" Height="23" />
+        <Label x:Name="lblPin" Content="Pin" HorizontalAlignment="Left" Margin="1062,421,0,0" VerticalAlignment="Top" />
         <Label x:Name="lblBenutzername" Content="Benutzername" HorizontalAlignment="Left" Margin="1062,392,0,0" VerticalAlignment="Top" />
         <TextBox x:Name="txtPin" HorizontalAlignment="Left" Height="23" Margin="937,421,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" />
         <TextBox x:Name="txtBenutzername" HorizontalAlignment="Left" Height="23" Margin="937,393,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" />
         <!-- -->
-        <Button x:Name="btnLaden" Content="Laden" HorizontalAlignment="Left" Margin="1029,489,0,0" VerticalAlignment="Top" Width="75" Click="_btnladen_Click" />
-        <Button x:Name="btnAbspeichern" Content="Speichern" HorizontalAlignment="Left" Margin="937,489,0,0" VerticalAlignment="Top" Width="75" Click="_btnAbspeichern_Click" />
+        <Button x:Name="btnLaden" Content="Laden" HorizontalAlignment="Left" Margin="1029,499,0,0" VerticalAlignment="Top" Width="75" Click="_btnladen_Click" />
+        <Button x:Name="btnAbspeichern" Content="Speichern" HorizontalAlignment="Left" Margin="937,499,0,0" VerticalAlignment="Top" Width="75" Click="_btnAbspeichern_Click" />
         <Button x:Name="btnFraktal3Dproto" Content="Fraktale Dimension" HorizontalAlignment="Left" Margin="944,186,0,0" VerticalAlignment="Top" Width="113" Height="40" Click="_btnFraktal3Dproto_Click" />
 
         <!--Items für die Berechnung des Fraktals -->

@@ -12,7 +12,7 @@ namespace WpfWeigelscheWillkuer_C_sharp
 	{
 
 		public static readonly DependencyProperty X_SizeProperty;
-		public static readonly DependencyProperty Y_SizeProperty;
+		//public static readonly DependencyProperty Y_SizeProperty;
 
 		static WeigelschesObjekte() //C# mit VS Studio 2015 Kapitel 22.3.1
 		{

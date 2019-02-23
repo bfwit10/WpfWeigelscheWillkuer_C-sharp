@@ -21,9 +21,9 @@ namespace WpfWeigelscheWillkuer_C_sharp
 	{
 
 		private int myVar;
-		private int myVarA;
-		private int myVarB;
-		private int myVarC;
+		//private int myVarA;
+		//private int myVarB;
+		//private int myVarC;
 
 		public int MyProperty
 		{
