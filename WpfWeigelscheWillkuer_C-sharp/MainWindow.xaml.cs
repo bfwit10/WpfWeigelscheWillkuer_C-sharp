@@ -465,6 +465,11 @@ namespace WpfWeigelscheWillkuer_C_sharp
 
 		}
 
+		private void BtnStart_SacredGeometry_Click(object sender, RoutedEventArgs e)
+		{
+
+		}
+
 		//Friedhof (lieber Herr Gertz, Standardkonstruktoren an diesen Ort zu verbannen tztztzt... )
 		private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e) { }
 

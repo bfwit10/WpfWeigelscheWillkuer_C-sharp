@@ -20,10 +20,11 @@
         <Button x:Name="btnFraktal3Dproto" Content="Fraktale Dimension" HorizontalAlignment="Left" Margin="944,186,0,0" VerticalAlignment="Top" Width="113" Height="40" Click="_btnFraktal3Dproto_Click" />
 
         <!--Items für die Berechnung des Fraktals -->
-        <Button x:Name="btnStart" Content="Ebenen anzeigen" HorizontalAlignment="Left" Margin="19,247,0,0" VerticalAlignment="Top" Width="100" Click="_btnStart_Click" Height="23" />
+        <Button x:Name="btnStart" Content="Weigelsches' Objekt" HorizontalAlignment="Left" Margin="19,262,0,0" VerticalAlignment="Top" Width="152" Click="_btnStart_Click" Height="23" />
         <TextBox x:Name="txtLänge" HorizontalAlignment="Left" Height="23" Margin="19,165,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="69" />
         <TextBox x:Name="txtEingabe" HorizontalAlignment="Left" Height="23" Margin="19,224,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="40" />
         <Label x:Name="Label" Content="Länge Seite des Quadrates" HorizontalAlignment="Left" Margin="19,193,0,0" VerticalAlignment="Top" />
-        <Button x:Name="btnclearView" Content="clear" HorizontalAlignment="Left" Margin="19,309,0,0" VerticalAlignment="Top" Width="75" Click="BtnclearView_Click" />
+        <Button x:Name="btnclearView" Content="clear" HorizontalAlignment="Left" Margin="19,353,0,0" VerticalAlignment="Top" Width="75" Click="BtnclearView_Click" />
+        <Button x:Name="btnStart_SacredGeometry" Content="Sacred Geometry" HorizontalAlignment="Left" Margin="19,300,0,0" VerticalAlignment="Top" Width="152" Height="23" Click="BtnStart_SacredGeometry_Click" />
     </Grid>
 </Window>
