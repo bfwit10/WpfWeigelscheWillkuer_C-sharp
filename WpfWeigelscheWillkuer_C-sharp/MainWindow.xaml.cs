@@ -54,7 +54,7 @@ namespace WpfWeigelscheWillkuer_C_sharp
 		public MainWindow()
 		{
 			InitializeComponent();
-			Fill_cb_UseDatabase(); //Auskommentiert weil die Methode auf dem Friehof (s.u.) gelandet ist...
+			Fill_cb_UseDatabase();
 		}
 
 		private void _btnExit_Click(object sender, RoutedEventArgs e) //zum schliessen der gesamten Form
