@@ -20,33 +20,26 @@ namespace WpfWeigelscheWillkuer_C_sharp
 	public partial class MainWindow : Window
 	{
 
-		private int myVar;
-		//private int myVarA;
-		//private int myVarB;
-		//private int myVarC;
+		private int myVarA;
+		private int myVarB;
+		private int myVarC;
 
-		public int MyProperty
+		public int MyVarA
 		{
-		  get { return myVar; }
-		  set { myVar = value; }
+		  get { return myVarA; }
+		  set { myVarA = value; }
 		}
 
-		public int MyPropertyA
+		public int MyVarB
 		{
-		  get { return myVar; }
-		  set { myVar = value; }
+		  get { return myVarB; }
+		  set { myVarB = value; }
 		}
 
-		public int MyPropertyB
+		public int MyVarC
 		{
-		  get { return myVar; }
-		  set { myVar = value; }
-		}
-
-		public int MyPropertyC
-		{
-		  get { return myVar; }
-		  set { myVar = value; }
+		  get { return myVarC; }
+		  set { myVarC = value; }
 		}
 
 		private string Connection = GlobalVariables.GlobalMySqlCon; //Für die Verbindung an unsere Datenbank
@@ -296,8 +289,9 @@ namespace WpfWeigelscheWillkuer_C_sharp
 		//Ab hier beginnt die Berechnung und Darstellung des Fraktales
 		private void _btnStart_Click(object sender, RoutedEventArgs e)
 		{
-			//playRandomVivaldi(false);
+			PlayRandomVivaldi(false); //False Enables playing... not very intuitive...
 			// Aufruf der Zeichnen Methode!
+			MyVarA++ ;
 			DrawLines(true);
 		}
 
@@ -428,7 +422,6 @@ namespace WpfWeigelscheWillkuer_C_sharp
 			//removeLines(); // Remove Lines entfernt (momentan) nur das zuletzt gezeichnete Objekt!
 			//this.txtEingabe.Text = string.Empty;
 			//this.txtLänge.Text = string.Empty;
-			//stopVivaldi();
 
 			//überzeichnen der Rechtecke (doof)
 			//Rectangle theRect = new Rectangle
@@ -441,10 +434,18 @@ namespace WpfWeigelscheWillkuer_C_sharp
 
 			//PanelCollectionContent();
 			//MainGrid.Children.Remove(Linie2);
-			MainGrid.Children.RemoveRange(15, MainGrid.Children.Count - 15);
+
+			StopVivaldi();
+			
+			while (MyVarA != 0)
+			{
+			MainGrid.Children.RemoveRange(16, MainGrid.Children.Count - 16);
 			// Dispose() nach migration in externe Klasse mit IDisposable...
 			//MainGrid.Children.Add(theRect);
-			GC.Collect(2);
+			MyVarA--;
+			}
+			GC.Collect();
+			
 		}
 
 		// Metode zum Debuggen der panel collection.
